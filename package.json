@@ -11,7 +11,9 @@
   "scripts": {
     "build": "poi --prod",
     "lint": "eslint .",
-    "test": "yarn lint"
+    "test": "yarn lint",
+    "prepublish": "yarn build && yarn test",
+    "release": "standard-version && git push --follow-tags && npm publish"
   },
   "dependencies": {
     "connect": "^3.6.6",
@@ -30,6 +32,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
     "poi": "^12.5.6",
+    "standard-version": "^5.0.2",
     "vue": "^2.6.9",
     "vue-template-compiler": "^2.6.9"
   }
