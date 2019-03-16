@@ -1,0 +1,26 @@
+{
+  "name": "@nuxt/loading-screen",
+  "version": "0.0.0",
+  "repository": "nuxt/loading-screen",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "app-dist"
+  ],
+  "main": "lib/module.js",
+  "scripts": {
+    "build": "poi --prod"
+  },
+  "dependencies": {
+    "connect": "^3.6.6",
+    "fs-extra": "^7.0.1",
+    "serve-static": "^1.13.2",
+    "ws": "^6.2.0"
+  },
+  "devDependencies": {
+    "poi": "^12.5.6",
+    "rollup-plugin-vue": "^4.7.2",
+    "vue": "^2.6.9",
+    "vue-template-compiler": "^2.6.9"
+  }
+}
