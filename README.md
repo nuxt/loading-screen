@@ -1,5 +1,6 @@
 ## Nuxt Loading Screen Module
 
+[![Circle CI][circleci-src]][circleci-href]
 [![Standard JS][standard-js-src]][standard-js-href]
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -23,6 +24,9 @@ This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.j
 MIT - Made with 💖 By Nuxt.js team!
 
 <!-- Refs -->
+[circleci-src]: https://flat.badgen.net/circleci/github/nuxt/loading-screen
+[circleci-href]: https://circleci.com/gh/nuxt/loading-screen
+
 [standard-js-src]: https://flat.badgen.net/badge/code%20style/standard/green
 [standard-js-href]: https://standardjs.com
 
