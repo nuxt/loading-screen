@@ -12,12 +12,15 @@
         </svg>
       </transition>
     </div>
-    <div v-if="!bundles.length" class="row placeholder">
+    <div v-if="!bundles.length && !errored" class="row placeholder">
       <transition appear>
         <h3>Loading...</h3>
       </transition>
     </div>
-    <transition-group>
+    <div v-if="errored">
+      <h3 class="errored">An error occured, please look at Nuxt.js terminal.</h3>
+    </div>
+    <transition-group v-else>
       <div v-for="bundle of bundles" :key="bundle" class="row">
         <h3>{{ bundle | capitalize }} bundle</h3>
         <div class="progress_bar_container">
@@ -49,6 +52,7 @@ export default {
   data() {
     return {
       finished: false,
+      errored: false,
       bundles: [],
       states: {
         client: {
@@ -103,9 +107,6 @@ export default {
       // Close websockets connection
       this.ws.close()
 
-      // Clear console
-      this.clearConsole()
-
       // If fetch does not exist, hard reload the page
       if (typeof window.fetch !== 'function') {
         return window.location.reload(true)
@@ -113,6 +114,16 @@ export default {
 
       // Transition to the Nuxt app
       const html = await fetch(location.href).then(res => res.text())
+      // if rendering the same loading page, show an error
+      if (html.includes(document.title)) {
+        this.isFinished = false
+        this.errored = true
+        return
+      }
+
+      // Clear console
+      this.clearConsole()
+
       document.open()
       document.write(html)
       document.close()

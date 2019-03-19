@@ -65,7 +65,7 @@ export default {
 
     onWSMessage(msg) {
       let data = msg.data
-
+      this.logWS('Message: ', data)
       try {
         if (data[0] === '{') {
           data = JSON.parse(data)

@@ -44,6 +44,10 @@ h3 {
   letter-spacing: 1px;
 }
 
+h3.errored {
+  color: #D0021B;
+}
+
 h4 {
   margin-bottom: 30px;
   font-size: 15px;
