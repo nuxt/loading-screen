@@ -9,6 +9,8 @@
 
 This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.js) to show loading screen.
 
+![nuxt-loading-screen](https://user-images.githubusercontent.com/904724/54605661-12812680-4a4a-11e9-92e0-e7d7ed3a7c66.gif)
+
 ## Contribution
 
 - Clone this repository
