@@ -9,7 +9,9 @@ export default {
     },
 
     wsConnect(path) {
-      this.wsURL = `ws://${location.hostname}:${location.port}${path}`
+      if (path) {
+        this.wsURL = `ws://${location.hostname}:${location.port}${path}`
+      }
       this.logWS(`Connecting to ${this.wsURL}...`)
 
       this.ws = new WebSocket(this.wsURL)
