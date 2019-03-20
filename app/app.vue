@@ -18,7 +18,9 @@
       </transition>
     </div>
     <div v-if="errored">
-      <h3 class="errored">An error occured, please look at Nuxt.js terminal.</h3>
+      <h3 class="errored">
+        An error occured, please look at Nuxt.js terminal.
+      </h3>
     </div>
     <transition-group v-else>
       <div v-for="bundle of bundles" :key="bundle" class="row">
@@ -72,6 +74,7 @@ export default {
   },
 
   mounted() {
+    this.onWSData(window.__STATE__)
     this.wsConnect('/_loading/ws')
   },
 
