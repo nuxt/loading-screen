@@ -9,9 +9,8 @@ export default {
     },
 
     wsConnect(path) {
-      this.logWS('Connecting...')
-
       this.wsURL = `ws://${location.hostname}:${location.port}${path}`
+      this.logWS(`Connecting to ${this.wsURL}...`)
 
       this.ws = new WebSocket(this.wsURL)
 
@@ -65,7 +64,8 @@ export default {
 
     onWSMessage(msg) {
       let data = msg.data
-      this.logWS('Message: ', data)
+
+      // this.logWS('Message: ', data)
       try {
         if (data[0] === '{') {
           data = JSON.parse(data)

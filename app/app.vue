@@ -84,6 +84,10 @@ export default {
       let isFinished = true
 
       this.bundles = data.states.map(state => state.name.toLowerCase())
+      // Ignore if not bundle is given
+      if (!this.bundles.length) {
+        return
+      }
 
       for (const state of data.states) {
         const bundle = state.name.toLowerCase()
