@@ -5553,10 +5553,10 @@ pkg-dir@^3.0.0:
   dependencies:
     find-up "^3.0.0"
 
-poi@^12.5.6:
-  version "12.5.6"
-  resolved "https://registry.yarnpkg.com/poi/-/poi-12.5.6.tgz#481357db7147fb8a5287d0b981bb508f60ec80c1"
-  integrity sha512-Rng+vz2d57YdKicTrEMwNTjYsmS+ZHCHxl911UkvbTTUl6E6ZfICg5GsWXTV02l6uQ7Gz0TOLOK8tX1FwGAbAg==
+poi@^12.5.7:
+  version "12.5.7"
+  resolved "https://registry.yarnpkg.com/poi/-/poi-12.5.7.tgz#fc2ad34876cb492117eb83aebaf5bebdab4a0c5b"
+  integrity sha512-MyF7F/Dm4QgxtosTtf7p0r+Scwcba6BMCdtPJA2uosStfNmkZYjFm8p+nIRJOqLSR67Zk6JirGK0F5IIIwhIvQ==
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
