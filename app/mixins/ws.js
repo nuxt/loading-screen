@@ -10,7 +10,8 @@ export default {
 
     wsConnect(path) {
       if (path) {
-        this.wsURL = `ws://${location.hostname}:${location.port}${path}`
+        const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+        this.wsURL = `${protocol}://${location.hostname}:${location.port}${path}`
         this.logWS(`Connecting to ${this.wsURL}...`)
       } else {
         this.logWS(`ReConnecting to ${this.wsURL}...`)
