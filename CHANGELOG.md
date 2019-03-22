@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.3](https://github.com/nuxt/loading-screen/compare/v0.1.2...v0.1.3) (2019-03-22)
+
+
+### Bug Fixes
+
+* use wss for https ([#4](https://github.com/nuxt/loading-screen/issues/4)) ([eeb85eb](https://github.com/nuxt/loading-screen/commit/eeb85eb))
+
+
+
 ## [0.1.2](https://github.com/nuxt/loading-screen/compare/v0.1.1...v0.1.2) (2019-03-20)
 
 
