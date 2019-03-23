@@ -33,6 +33,7 @@
     "eslint-plugin-vue": "^5.2.2",
     "poi": "^12.5.7",
     "standard-version": "^5.0.2",
+    "unfetch": "^4.1.0",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
   }
