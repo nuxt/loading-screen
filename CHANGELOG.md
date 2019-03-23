@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.2.0](https://github.com/nuxt/loading-screen/compare/v0.1.3...v0.2.0) (2019-03-23)
+
+
+### Features
+
+* fallback to fetch if ws timesout ([#6](https://github.com/nuxt/loading-screen/issues/6)) ([46bd50a](https://github.com/nuxt/loading-screen/commit/46bd50a))
+
+
+
 ## [0.1.3](https://github.com/nuxt/loading-screen/compare/v0.1.2...v0.1.3) (2019-03-22)
 
 
