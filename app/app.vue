@@ -39,6 +39,7 @@
 <style src="./css/fonts.css"></style>
 
 <script>
+import fetch from 'unfetch'
 import capitalizeMixin from './mixins/capitalize'
 import logMixin from './mixins/log'
 import wsMixin from './mixins/ws'
@@ -80,6 +81,10 @@ export default {
 
   methods: {
     onWSData(data) {
+      this.onData(data)
+    },
+
+    onData(data) {
       if (!data || !data.states) {
         return
       }
@@ -87,6 +92,7 @@ export default {
       let isFinished = true
 
       this.bundles = data.states.map(state => state.name.toLowerCase())
+
       // Ignore if not bundle is given
       if (!this.bundles.length) {
         return
