@@ -75,13 +75,43 @@ export default {
   },
 
   mounted() {
-    this.onWSData(window.__STATE__)
+    this.onData(window.__STATE__)
     this.wsConnect('/_loading/ws')
+    this.setTimeout()
   },
 
   methods: {
     onWSData(data) {
+      // We have data from ws. Delay timeout!
+      this.setTimeout()
+
       this.onData(data)
+    },
+
+    async fetchData() {
+      // Prevent any fetch happening during fetch
+      this.clearTimeout()
+
+      try {
+        const data = await fetch('/_loading/json').then(res => res.json())
+        this.onData(data)
+      } catch (e) {
+        this.logError(e)
+      }
+
+      // Start next timeout
+      this.setTimeout()
+    },
+
+    clearTimeout() {
+      if (this._fetchTimeout) {
+        clearTimeout(this._fetchTimeout)
+      }
+    },
+
+    setTimeout() {
+      this.clearTimeout()
+      this._fetchTimeout = setTimeout(() => this.fetchData(), 1000)
     },
 
     onData(data) {
@@ -134,12 +164,14 @@ export default {
         return
       }
 
-      // Clear console
-      this.clearConsole()
-
+      // Replace document with new page
       document.open()
       document.write(html)
       document.close()
+
+      // Clear console and timeout
+      this.clearConsole()
+      this.clearTimeout()
     }
   }
 }
