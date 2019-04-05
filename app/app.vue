@@ -12,13 +12,13 @@
         </svg>
       </transition>
     </div>
-    <div v-if="!bundles.length && !errored" class="row placeholder">
+    <div v-if="!bundles.length && !hasErrors" class="row placeholder">
       <transition appear>
         <h3>Loading...</h3>
       </transition>
     </div>
-    <div v-if="errored">
-      <h3 class="errored">
+    <div v-else-if="hasErrors">
+      <h3 class="hasErrors">
         An error occured, please look at Nuxt.js terminal.
       </h3>
     </div>
@@ -52,25 +52,14 @@ export default {
     logMixin,
     wsMixin
   ],
+
   data() {
     return {
-      finished: false,
-      errored: false,
+      allDone: false,
+      hasErrors: false,
+      isFinished: false,
       bundles: [],
-      states: {
-        client: {
-          progress: 0,
-          status: 'Bundling...'
-        },
-        server: {
-          progress: 0,
-          status: 'Bundling...'
-        },
-        modern: {
-          progress: 0,
-          status: 'Bundling...'
-        }
-      }
+      states: {}
     }
   },
 
@@ -119,59 +108,67 @@ export default {
         return
       }
 
-      let isFinished = true
-
+      // Update active bundles
       this.bundles = data.states.map(state => state.name.toLowerCase())
 
-      // Ignore if not bundle is given
+      // Ignore if no bundle is active
       if (!this.bundles.length) {
         return
       }
 
+      // Update bundle states
       for (const state of data.states) {
         const bundle = state.name.toLowerCase()
-
+        if (!this.states[bundle]) {
+          this.states[bundle] = {}
+        }
         this.states[bundle].progress = state.progress
         this.states[bundle].status = state.details.length ? state.details.slice(0, 2).join(' ') : 'Done'
-
-        if (!state.done) {
-          isFinished = false
-        }
       }
 
-      if (!this.isFinished && isFinished) {
-        setTimeout(() => this.showNuxtApp(), 300)
+      // Try to show nuxt app if allDone and no errors
+      if (!data.hasErrors && data.allDone && !this.allDone) {
+        this.showNuxtApp()
       }
 
-      this.isFinished = isFinished
+      // Update state
+      this.allDone = data.allDone
+      this.hasErrors = data.hasErrors
     },
 
     async showNuxtApp() {
-      // Close websockets connection
-      this.ws.close()
-
       // If fetch does not exist, hard reload the page
       if (typeof window.fetch !== 'function') {
         return window.location.reload(true)
       }
 
-      // Transition to the Nuxt app
+      // Fetch server side content
       const html = await fetch(location.href).then(res => res.text())
-      // if rendering the same loading page, show an error
-      if (html.includes(document.title)) {
-        this.isFinished = false
-        this.errored = true
+
+      // Detect if still loading
+      this.isFinished = !html.includes('<!-- loading_app -->')
+
+      if (!this.isFinished) {
+        this.allDone = false
         return
       }
+
+      // Wait for fade animation
+      await new Promise(resolve => setTimeout(resolve, 300))
 
       // Replace document with new page
       document.open()
       document.write(html)
       document.close()
 
-      // Clear console and timeout
-      this.clearConsole()
+      // Stop timers
       this.clearTimeout()
+
+      // Close websockets connection
+      this.ws.close()
+
+      // Clear console
+      this.clearConsole()
     }
   }
 }

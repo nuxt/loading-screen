@@ -44,7 +44,7 @@ h3 {
   letter-spacing: 1px;
 }
 
-h3.errored {
+h3.hasErrors {
   color: #D0021B;
 }
 
