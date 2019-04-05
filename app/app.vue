@@ -127,8 +127,9 @@ export default {
       }
 
       // Try to show nuxt app if allDone and no errors
-      if (!data.hasErrors && data.allDone && !this.allDone) {
-        this.showNuxtApp()
+      if (!data.hasErrors && data.allDone && !this.isFinished) {
+        this.isFinished = true
+        setTimeout(() => this.showNuxtApp(), 300)
       }
 
       // Update state
@@ -147,14 +148,9 @@ export default {
 
       // Detect if still loading
       this.isFinished = !html.includes('<!-- loading_app -->')
-
       if (!this.isFinished) {
-        this.allDone = false
         return
       }
-
-      // Wait for fade animation
-      await new Promise(resolve => setTimeout(resolve, 300))
 
       // Replace document with new page
       document.open()
