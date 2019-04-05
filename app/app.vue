@@ -58,14 +58,15 @@ export default {
       allDone: false,
       hasErrors: false,
       isFinished: false,
+      baseURL: window.$BASE_URL,
       bundles: [],
       states: {}
     }
   },
 
   mounted() {
-    this.onData(window.__STATE__)
-    this.wsConnect('/_loading/ws')
+    this.onData(window.$STATE)
+    this.wsConnect(`${this.baseURL}_loading/ws`)
     this.setTimeout()
   },
 
@@ -82,7 +83,7 @@ export default {
       this.clearTimeout()
 
       try {
-        const data = await fetch('/_loading/json').then(res => res.json())
+        const data = await fetch(`${this.baseURL}_loading/json`).then(res => res.json())
         this.onData(data)
       } catch (e) {
         this.logError(e)

@@ -1,7 +1,7 @@
 module.exports = {
   entry: './app/index.js',
   output: {
-    publicUrl: '/_loading/',
+    publicUrl: '{BASE_URL}_loading/',
     dir: 'app-dist',
     html: {
       template: 'app/index.html',
