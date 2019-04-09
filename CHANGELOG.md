@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.3.0](https://github.com/nuxt/loading-screen/compare/v0.2.0...v0.3.0) (2019-04-09)
+
+
+### Features
+
+* improve loading and error handling ([6316379](https://github.com/nuxt/loading-screen/commit/6316379)), closes [#9](https://github.com/nuxt/loading-screen/issues/9)
+* support baseURL ([#8](https://github.com/nuxt/loading-screen/issues/8)) ([583012c](https://github.com/nuxt/loading-screen/commit/583012c))
+
+
+
 # [0.2.0](https://github.com/nuxt/loading-screen/compare/v0.1.3...v0.2.0) (2019-03-23)
 
 
