@@ -80,6 +80,10 @@ export default {
 
   methods: {
     onWSData(data) {
+      if (this._closed) {
+        return
+      }
+
       // We have data from ws. Delay timeout!
       this.setTimeout()
 
@@ -87,6 +91,10 @@ export default {
     },
 
     async fetchData() {
+      if (this._closed) {
+        return
+      }
+
       // Prevent any fetch happening during fetch
       this.clearTimeout()
 
@@ -108,12 +116,16 @@ export default {
     },
 
     setTimeout() {
+      if (this._closed) {
+        return
+      }
+
       this.clearTimeout()
       this._fetchTimeout = setTimeout(() => this.fetchData(), 1000)
     },
 
     onData(data) {
-      if (!data || !data.states) {
+      if (!data || !data.states || this._closed) {
         return
       }
 
@@ -150,6 +162,11 @@ export default {
     },
 
     async showNuxtApp() {
+      if (this._closed) {
+        return
+      }
+      this._closed = true
+
       // Stop timers
       this.clearTimeout()
 
