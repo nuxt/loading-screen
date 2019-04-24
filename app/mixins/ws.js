@@ -82,6 +82,13 @@ export default {
       if (this.onWSData) {
         this.onWSData(data)
       }
+    },
+
+    wsClose() {
+      if (this.ws) {
+        this.ws.close()
+        delete this.ws
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-screen" :class="{ hide: allDone && !manualReload }">
+  <div class="loading-screen" :class="{ hide: allDone }">
     <div class="row">
       <transition appear>
         <svg class="logo" width="220" height="166" xmlns="http://www.w3.org/2000/svg">
@@ -20,11 +20,6 @@
     <div v-else-if="hasErrors">
       <h3 class="hasErrors">
         An error occured, please look at Nuxt.js terminal.
-      </h3>
-    </div>
-    <div v-else-if="manualReload">
-      <h3 class="manualReload" @click="reloadPage">
-        Please click here to continue or manually reload the page.
       </h3>
     </div>
     <transition-group v-else>
@@ -80,7 +75,7 @@ export default {
 
   methods: {
     onWSData(data) {
-      if (this._closed) {
+      if (this._reloading) {
         return
       }
 
@@ -91,7 +86,7 @@ export default {
     },
 
     async fetchData() {
-      if (this._closed) {
+      if (this._reloading) {
         return
       }
 
@@ -116,7 +111,7 @@ export default {
     },
 
     setTimeout() {
-      if (this._closed) {
+      if (this._reloading) {
         return
       }
 
@@ -125,7 +120,7 @@ export default {
     },
 
     onData(data) {
-      if (!data || !data.states || this._closed) {
+      if (!data || !data.states || this._reloading) {
         return
       }
 
@@ -149,7 +144,7 @@ export default {
 
       // Try to show nuxt app if allDone and no errors
       if (!data.hasErrors && data.allDone && !this.allDone) {
-        this.showNuxtApp()
+        this.reload()
       }
 
       // Update state
@@ -157,56 +152,26 @@ export default {
       this.hasErrors = data.hasErrors
     },
 
-    reloadPage() {
-      return window.location.reload(true)
-    },
-
-    async showNuxtApp() {
-      if (this._closed) {
+    async reload() {
+      if (this._reloading) {
         return
       }
-      this._closed = true
+      this.reloading = true
 
       // Stop timers
       this.clearTimeout()
 
       // Close websockets connection
-      this.ws.close()
+      this.wsClose()
+
+      // Clear console
+      this.clearConsole()
 
       // Wait for transition (and hopefully renderer to be ready)
       await waitFor(500)
 
-      // If fetch does not exist, hard reload the page
-      if (typeof window.fetch !== 'function') {
-        return this.reloadPage()
-      }
-
-      // Fetch server side content
-      const fetchHTML = () => fetch(location.href).then(res => res.text())
-      const isLoading = html => html.includes('<!-- nuxt_loading_screen -->')
-      let html = await fetchHTML()
-
-      // Detect if still loading and wait a few more seconds
-      if (isLoading(html)) {
-        await waitFor(2000)
-        html = await fetchHTML()
-        if (isLoading(html)) {
-          // Give up
-          this.manualReload = true
-          return
-        }
-      }
-
-      // Replace document with new page
-      document.open()
-      document.write(html)
-      document.close()
-
-      // Destroy app
-      window._nuxtLoadingScreen.$destroy()
-
-      // Clear console
-      this.clearConsole()
+      // Reload the page
+      window.location.reload(true)
     }
   }
 }
