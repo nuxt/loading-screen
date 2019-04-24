@@ -153,16 +153,16 @@ export default {
         return
       }
 
-      // Replace document with new page
-      document.open()
-      document.write(html)
-      document.close()
-
       // Stop timers
       this.clearTimeout()
 
       // Close websockets connection
       this.ws.close()
+
+      // Replace document with new page
+      document.open()
+      document.write(html)
+      document.close()
 
       // Clear console
       this.clearConsole()
