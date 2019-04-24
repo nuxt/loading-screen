@@ -52,7 +52,7 @@ import wsMixin from './mixins/ws'
 const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 export default {
-  el: '#app',
+  el: '#nuxt_loading_screen',
 
   mixins: [
     capitalizeMixin,
@@ -166,7 +166,7 @@ export default {
 
       // Fetch server side content
       const fetchHTML = () => fetch(location.href).then(res => res.text())
-      const isLoading = html => html.includes('<!-- loading_app -->')
+      const isLoading = html => html.includes('<!-- nuxt_loading_screen -->')
       let html = await fetchHTML()
 
       // Detect if still loading and wait a few more seconds
