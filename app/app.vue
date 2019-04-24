@@ -202,6 +202,9 @@ export default {
       document.write(html)
       document.close()
 
+      // Destroy app
+      window._nuxtLoadingScreen.$destroy()
+
       // Clear console
       this.clearConsole()
     }
