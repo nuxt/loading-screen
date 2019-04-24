@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.1](https://github.com/nuxt/loading-screen/compare/v0.4.0...v0.4.1) (2019-04-24)
+
+
+### Bug Fixes
+
+* _closed guard ([b7f3b3e](https://github.com/nuxt/loading-screen/commit/b7f3b3e))
+* use unique top level selector ([4f8811e](https://github.com/nuxt/loading-screen/commit/4f8811e))
+* workaround for duplicate instance ([a6dd5a7](https://github.com/nuxt/loading-screen/commit/a6dd5a7))
+
+
+
 # [0.4.0](https://github.com/nuxt/loading-screen/compare/v0.3.1...v0.4.0) (2019-04-24)
 
 
