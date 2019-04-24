@@ -22,7 +22,7 @@
 }
 
 .v-enter-active, .v-leave-active {
-  transition-delay: 0.2s;
+  transition-delay: 0.5s;
   transition-property: all;
   transition-duration: 0.6s;
 }
@@ -46,6 +46,11 @@ h3 {
 
 h3.hasErrors {
   color: #D0021B;
+}
+
+h3.manualReload {
+  color: #F57F17;
+  cursor: pointer;
 }
 
 h4 {

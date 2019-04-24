@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-screen" :class="{ hide: isFinished }">
+  <div class="loading-screen" :class="{ hide: allDone && !manualReload }">
     <div class="row">
       <transition appear>
         <svg class="logo" width="220" height="166" xmlns="http://www.w3.org/2000/svg">
@@ -20,6 +20,11 @@
     <div v-else-if="hasErrors">
       <h3 class="hasErrors">
         An error occured, please look at Nuxt.js terminal.
+      </h3>
+    </div>
+    <div v-else-if="manualReload">
+      <h3 class="manualReload" @click="reloadPage">
+        Please click here to continue or manually reload the page.
       </h3>
     </div>
     <transition-group v-else>
@@ -44,6 +49,8 @@ import capitalizeMixin from './mixins/capitalize'
 import logMixin from './mixins/log'
 import wsMixin from './mixins/ws'
 
+const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
+
 export default {
   el: '#app',
 
@@ -58,6 +65,7 @@ export default {
       allDone: false,
       hasErrors: false,
       isFinished: false,
+      manualReload: false,
       baseURL: window.$BASE_URL,
       bundles: [],
       states: {}
@@ -128,9 +136,8 @@ export default {
       }
 
       // Try to show nuxt app if allDone and no errors
-      if (!data.hasErrors && data.allDone && !this.isFinished) {
-        this.isFinished = true
-        setTimeout(() => this.showNuxtApp(), 300)
+      if (!data.hasErrors && data.allDone && !this.allDone) {
+        this.showNuxtApp()
       }
 
       // Update state
@@ -138,26 +145,40 @@ export default {
       this.hasErrors = data.hasErrors
     },
 
+    reloadPage() {
+      return window.location.reload(true)
+    },
+
     async showNuxtApp() {
-      // If fetch does not exist, hard reload the page
-      if (typeof window.fetch !== 'function') {
-        return window.location.reload(true)
-      }
-
-      // Fetch server side content
-      const html = await fetch(location.href).then(res => res.text())
-
-      // Detect if still loading
-      this.isFinished = !html.includes('<!-- loading_app -->')
-      if (!this.isFinished) {
-        return
-      }
-
       // Stop timers
       this.clearTimeout()
 
       // Close websockets connection
       this.ws.close()
+
+      // Wait for transition (and hopefully renderer to be ready)
+      await waitFor(500)
+
+      // If fetch does not exist, hard reload the page
+      if (typeof window.fetch !== 'function') {
+        return this.reloadPage()
+      }
+
+      // Fetch server side content
+      const fetchHTML = () => fetch(location.href).then(res => res.text())
+      const isLoading = html => html.includes('<!-- loading_app -->')
+      let html = await fetchHTML()
+
+      // Detect if still loading and wait a few more seconds
+      if (isLoading(html)) {
+        await waitFor(2000)
+        html = await fetchHTML()
+        if (isLoading(html)) {
+          // Give up
+          this.manualReload = true
+          return
+        }
+      }
 
       // Replace document with new page
       document.open()
