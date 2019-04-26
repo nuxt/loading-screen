@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.1](https://github.com/nuxt/loading-screen/compare/v0.5.0...v0.5.1) (2019-04-26)
+
+
+### Bug Fixes
+
+* **style:** make `progress_bar` width responsive ([#14](https://github.com/nuxt/loading-screen/issues/14)) ([a52089a](https://github.com/nuxt/loading-screen/commit/a52089a))
+
+
+
 # [0.5.0](https://github.com/nuxt/loading-screen/compare/v0.4.1...v0.5.0) (2019-04-24)
 
 
