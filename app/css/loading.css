@@ -58,6 +58,7 @@ h4 {
   background-color: #DDDDDD;
   border-radius: 6px;
   width: 500px;
+  max-width: 85vw;
   height: 10px;
   margin-bottom: 10px;
 }
