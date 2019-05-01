@@ -2908,10 +2908,10 @@ eslint-plugin-import@^2.17.2:
     read-pkg-up "^2.0.0"
     resolve "^1.10.0"
 
-eslint-plugin-jest@^22.5.0:
-  version "22.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.5.0.tgz#3a02527a5b08f7232f7bb0a52da98407bf84cdd0"
-  integrity sha512-YLeCRAuU3qP9lRZMul1/IbxXGg1THVpWFPBEa+VUQkcqEtO3W9GDKZ84MxYxzKTwMChTjj1l2vuNKva8HYtGPg==
+eslint-plugin-jest@^22.5.1:
+  version "22.5.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.5.1.tgz#a31dfe9f9513c6af7c17ece4c65535a1370f060b"
+  integrity sha512-c3WjZR/HBoi4GedJRwo2OGHa8Pzo1EbSVwQ2HFzJ+4t2OoYM7Alx646EH/aaxZ+9eGcPiq0FT0UGkRuFFx2FHg==
 
 eslint-plugin-node@^8.0.1:
   version "8.0.1"
@@ -5584,10 +5584,10 @@ pkg-dir@^3.0.0:
   dependencies:
     find-up "^3.0.0"
 
-poi@^12.6.5:
-  version "12.6.5"
-  resolved "https://registry.yarnpkg.com/poi/-/poi-12.6.5.tgz#b1c7c26aeaf71338c63ded7347603b7095771af7"
-  integrity sha512-arlDxlBtjUE/gUjFyBghxG4wt5mCZGxNDkWvNXYgxYSR4UZzMzUzt1E2o6GweuvxpfbAiG+UfzgVLUJ+MrjKDA==
+poi@^12.6.6:
+  version "12.6.6"
+  resolved "https://registry.yarnpkg.com/poi/-/poi-12.6.6.tgz#35729159adbb705923ba3263679b4637c912462c"
+  integrity sha512-1ggsG6FxojyCVJk+SbUybOfHwDjnKxGohQAtgQaGLJpncjzlzZJ3spsOzSVn1IjJ+r2FVWH1WwMdZ352nLDNuQ==
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
