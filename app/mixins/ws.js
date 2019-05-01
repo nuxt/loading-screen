@@ -33,7 +33,7 @@ export default {
       setTimeout(() => {
         this.logWS('Reconnecting...')
         this.wsConnect()
-      }, this.interval)
+      }, interval)
     },
 
     onWSOpen(e) {
