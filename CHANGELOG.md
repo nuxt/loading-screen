@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.2](https://github.com/nuxt/loading-screen/compare/v0.5.1...v0.5.2) (2019-05-01)
+
+
+### Bug Fixes
+
+* **ws:** wsReconnect timeout ([#16](https://github.com/nuxt/loading-screen/issues/16)) ([27a974d](https://github.com/nuxt/loading-screen/commit/27a974d))
+
+
+
 ## [0.5.1](https://github.com/nuxt/loading-screen/compare/v0.5.0...v0.5.1) (2019-04-26)
 
 
