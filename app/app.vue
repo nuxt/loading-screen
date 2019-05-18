@@ -156,7 +156,7 @@ export default {
       if (this._reloading) {
         return
       }
-      this.reloading = true
+      this._reloading = true
 
       // Stop timers
       this.clearTimeout()
