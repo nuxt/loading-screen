@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "connect": "^3.6.6",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.1.0",
     "serve-static": "^1.13.2",
     "ws": "^7.0.0"
   },
