@@ -1,14 +1,14 @@
 export default {
   methods: {
-    log(...args) {
+    log (...args) {
       console.log(...args) // eslint-disable-line no-console
     },
 
-    logError(...args) {
+    logError (...args) {
       console.error(...args) // eslint-disable-line no-console
     },
 
-    clearConsole() {
+    clearConsole () {
       if (typeof console.clear === 'function') { // eslint-disable-line no-console
         console.clear() // eslint-disable-line no-console
       }

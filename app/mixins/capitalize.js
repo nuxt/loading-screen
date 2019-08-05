@@ -1,6 +1,6 @@
 export default {
   filters: {
-    capitalize(value) {
+    capitalize (value) {
       if (!value) {
         return ''
       }
