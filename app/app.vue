@@ -81,6 +81,7 @@ export default {
 
       // We have data from sse. Delay timeout!
       this.setTimeout()
+
       this.onData(data)
     },
 
