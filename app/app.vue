@@ -42,7 +42,7 @@
 import fetch from 'unfetch'
 import capitalizeMixin from './mixins/capitalize'
 import logMixin from './mixins/log'
-import wsMixin from './mixins/ws'
+import sseMixin from './mixins/sse'
 
 const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -52,7 +52,7 @@ export default {
   mixins: [
     capitalizeMixin,
     logMixin,
-    wsMixin
+    sseMixin
   ],
 
   data() {
@@ -69,19 +69,18 @@ export default {
 
   mounted() {
     this.onData(window.$STATE)
-    this.wsConnect(`${this.baseURL}_loading/ws`)
+    this.sseConnect(`${this.baseURL}_loading/sse`)
     this.setTimeout()
   },
 
   methods: {
-    onWSData(data) {
+    onSseData(data) {
       if (this._reloading) {
         return
       }
 
-      // We have data from ws. Delay timeout!
+      // We have data from sse. Delay timeout!
       this.setTimeout()
-
       this.onData(data)
     },
 
@@ -161,8 +160,8 @@ export default {
       // Stop timers
       this.clearTimeout()
 
-      // Close websockets connection
-      this.wsClose()
+      // Close EventSource connection
+      this.sseClose()
 
       // Clear console
       this.clearConsole()
