@@ -1,6 +1,6 @@
 {
   "name": "@nuxt/loading-screen",
-  "version": "0.5.2",
+  "version": "1.0.0",
   "repository": "nuxt/loading-screen",
   "license": "MIT",
   "files": [

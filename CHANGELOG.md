@@ -1,6 +1,22 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.0.0](https://github.com/nuxt/loading-screen/compare/v0.5.2...v1.0.0) (2019-08-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* /ws endpoint changed to /sse
+
+### Bug Fixes
+
+* missing underscore in reloading var ([#22](https://github.com/nuxt/loading-screen/issues/22)) ([3295e15](https://github.com/nuxt/loading-screen/commit/3295e15))
+
+
+### Features
+
+* switch from WebSocket to EventSource ([#34](https://github.com/nuxt/loading-screen/issues/34)) ([68ea10e](https://github.com/nuxt/loading-screen/commit/68ea10e))
 
 ## [0.5.2](https://github.com/nuxt/loading-screen/compare/v0.5.1...v0.5.2) (2019-05-01)
 
