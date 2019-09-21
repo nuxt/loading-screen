@@ -179,23 +179,30 @@ export default {
     },
 
     canReload() {
-      const reloadCount = parseInt(this.retrieveItem('reloadCount')) || 0
+      this.reloadCount = parseInt(this.retrieveItem('reloadCount')) || 0
       const lastReloadTime = parseInt(this.retrieveItem('lastReloadTime')) || 0
 
-      const currentTime = new Date().getTime()
-      const canReload = reloadCount < this.maxReloadCount
-      const reloadWasOutsideThreshold = lastReloadTime && currentTime > 1000 + lastReloadTime
+      this.loadingTime = new Date().getTime()
+      const canReload = this.reloadCount < this.maxReloadCount
+      const reloadWasOutsideThreshold = lastReloadTime && this.loadingTime > 1000 + lastReloadTime
 
+      // remove items when the last reload was outside our 1s threshold
+      // or when we've hit the max reload count so eg when the user
+      // manually reloads we start again with 5 tries
       if (!canReload || reloadWasOutsideThreshold) {
         this.removeItem('reloadCount')
         this.removeItem('lastReloadTime')
+        this.reloadCount = 0
 
         return canReload
       }
 
-      this.storeItem('reloadCount', 1 + reloadCount)
-      this.storeItem('lastReloadTime', currentTime)
       return true
+    },
+
+    updateReloadItems() {
+      this.storeItem('reloadCount', 1 + this.reloadCount)
+      this.storeItem('lastReloadTime', this.loadingTime)
     },
 
     async reload() {
@@ -215,6 +222,9 @@ export default {
 
       // Wait for transition (and hopefully renderer to be ready)
       await waitFor(500)
+
+      // Update reload counter
+      this.updateReloadItems()
 
       // Reload the page
       window.location.reload()
