@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-screen" :class="{ hide: allDone }">
+  <div class="loading-screen" :class="{ hide: allDone && !preventReload }">
     <div class="row">
       <transition appear>
         <svg class="logo" width="220" height="166" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,7 @@
         </svg>
       </transition>
     </div>
-    <div v-if="!bundles.length && !hasErrors" class="row placeholder">
+    <div v-if="!bundles.length && !hasErrors && !preventReload" class="row placeholder">
       <transition appear>
         <h3>Loading...</h3>
       </transition>
@@ -22,7 +22,18 @@
         An error occured, please look at Nuxt.js terminal.
       </h3>
     </div>
+    <div v-else-if="preventReload" class="reload_prevented">
+      <h3 class="hasErrors">Failed to show Nuxt.js app after {{ maxReloadCount }} reloads</h3>
+      <p>
+        Your Nuxt.js app could not be shown after {{ maxReloadCount }} reloads
+        even though the webpack build appears to have finished.
+      </p>
+      <p>
+        Try to reload the page manually, if this problem persist try to restart your Nuxt.js dev server.
+      </p>
+    </div>
     <transition-group v-else>
+      WHY
       <div v-for="bundle of bundles" :key="bundle" class="row">
         <h3>{{ bundle | capitalize }} bundle</h3>
         <div class="progress_bar_container">
@@ -43,6 +54,7 @@ import fetch from 'unfetch'
 import capitalizeMixin from './mixins/capitalize'
 import logMixin from './mixins/log'
 import sseMixin from './mixins/sse'
+import storageMixin from './mixins/storage'
 
 const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -52,7 +64,8 @@ export default {
   mixins: [
     capitalizeMixin,
     logMixin,
-    sseMixin
+    sseMixin,
+    storageMixin
   ],
 
   data() {
@@ -60,6 +73,8 @@ export default {
       allDone: false,
       hasErrors: false,
       isFinished: false,
+      maxReloadCount: 5,
+      preventReload: false,
       manualReload: false,
       baseURL: window.$BASE_URL,
       bundles: [],
@@ -67,7 +82,18 @@ export default {
     }
   },
 
+  beforeMount() {
+    if (!this.canReload()) {
+      this.preventReload = true
+      return
+    }
+  },
+
   mounted() {
+    if (this.preventReload) {
+      return
+    }
+
     this.onData(window.$STATE)
     this.sseConnect(`${this.baseURL}_loading/sse`)
     this.setTimeout()
@@ -152,6 +178,22 @@ export default {
       this.hasErrors = data.hasErrors
     },
 
+    canReload() {
+      const reloadCount = parseInt(this.retrieveItem('reloadCount')) || 0
+      const lastReloadTime = parseInt(this.retrieveItem('lastReloadTime')) || 0
+
+      const currentTime = new Date().getTime()
+      if (reloadCount > this.maxReloadCount && currentTime < 1000 + lastReloadTime) {
+        this.removeItem('reloadCount')
+        this.removeItem('lastReloadTime')
+        return false
+      }
+
+      this.storeItem('reloadCount', 1 + reloadCount)
+      this.storeItem('lastReloadTime', currentTime)
+      return true
+    },
+
     async reload() {
       if (this._reloading) {
         return
@@ -171,7 +213,7 @@ export default {
       await waitFor(500)
 
       // Reload the page
-      window.location.reload(true)
+      window.location.reload()
     }
   }
 }
