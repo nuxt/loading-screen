@@ -25,15 +25,13 @@
     <div v-else-if="preventReload" class="reload_prevented">
       <h3 class="hasErrors">Failed to show Nuxt.js app after {{ maxReloadCount }} reloads</h3>
       <p>
-        Your Nuxt.js app could not be shown after {{ maxReloadCount }} reloads
-        even though the webpack build appears to have finished.
+        Your Nuxt.js app could not be shown even though the webpack build appears to have finished.
       </p>
       <p>
-        Try to reload the page manually, if this problem persist try to restart your Nuxt.js dev server.
+        Try to reload the page manually, if this problem persists try to restart your Nuxt.js dev server.
       </p>
     </div>
     <transition-group v-else>
-      WHY
       <div v-for="bundle of bundles" :key="bundle" class="row">
         <h3>{{ bundle | capitalize }} bundle</h3>
         <div class="progress_bar_container">
@@ -227,7 +225,7 @@ export default {
       this.updateReloadItems()
 
       // Reload the page
-      window.location.reload()
+      window.location.reload(true)
     }
   }
 }
