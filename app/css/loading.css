@@ -54,6 +54,15 @@ h4 {
   color: #383838;
 }
 
+.reload_prevented {
+  width: 500px;
+  max-width: 85vw;
+}
+
+.reload_prevented p {
+  margin-bottom: 1rem;
+}
+
 .progress_bar_container {
   background-color: #DDDDDD;
   border-radius: 6px;
