@@ -183,10 +183,14 @@ export default {
       const lastReloadTime = parseInt(this.retrieveItem('lastReloadTime')) || 0
 
       const currentTime = new Date().getTime()
-      if (reloadCount > this.maxReloadCount && currentTime < 1000 + lastReloadTime) {
+      const canReload = reloadCount < this.maxReloadCount
+      const reloadWasOutsideThreshold = lastReloadTime && currentTime > 1000 + lastReloadTime
+
+      if (!canReload || reloadWasOutsideThreshold) {
         this.removeItem('reloadCount')
         this.removeItem('lastReloadTime')
-        return false
+
+        return canReload
       }
 
       this.storeItem('reloadCount', 1 + reloadCount)
