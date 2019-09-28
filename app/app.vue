@@ -75,6 +75,8 @@ export default {
 
   data() {
     return {
+      error: false,
+      stack: false,
       allDone: false,
       hasErrors: false,
       isFinished: false,
