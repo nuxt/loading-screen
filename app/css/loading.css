@@ -48,7 +48,8 @@ h3 {
   color: #D0021B;
 }
 
-p.hasErrors {
+p.pre {
+  margin-top: 1em;
   line-height: 1.2em;
   white-space: pre;
 }
