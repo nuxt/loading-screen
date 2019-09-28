@@ -17,10 +17,16 @@
         <h3>Loading...</h3>
       </transition>
     </div>
-    <div v-else-if="hasErrors">
+    <div v-else-if="hasErrors && !stack">
       <h3 class="hasErrors">
         An error occured, please look at Nuxt.js terminal.
       </h3>
+    </div>
+    <div v-else-if="hasErrors && stack">
+      <h3 class="hasErrors">
+        An error occured, please see below or look at Nuxt.js terminal for more info.
+      </h3>
+      <p class="hasErrors">{{ stack }}</p>
     </div>
     <div v-else-if="preventReload" class="reload_prevented">
       <h3 class="hasErrors">Failed to show Nuxt.js app after {{ maxReloadCount }} reloads</h3>
@@ -146,6 +152,16 @@ export default {
     onData(data) {
       if (!data || !data.states || this._reloading) {
         return
+      }
+
+      if (data.states.length === 1) {
+        const [{ name, stack }] = data.states
+
+        if (name === 'error') {
+          this.hasErrors = true
+          this.stack = stack
+          return
+        }
       }
 
       // Update active bundles

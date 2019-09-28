@@ -44,8 +44,13 @@ h3 {
   letter-spacing: 1px;
 }
 
-h3.hasErrors {
+.hasErrors {
   color: #D0021B;
+}
+
+p.hasErrors {
+  line-height: 1.2em;
+  white-space: pre;
 }
 
 h4 {
