@@ -25,9 +25,13 @@
     <div v-else-if="hasErrors && error">
       <h3 class="hasErrors">
         An error occured, please see below or look at Nuxt.js terminal for more info.
+
       </h3>
-      <p class="hasErrors">{{ error }}</p>
-      <p class="pre" v-if="stack">{{ stack }}</p>
+      <div class="errorStack">
+        <p class="hasErrors">{{ error }}</p>
+        <p class="pre" v-if="stack">{{ stack }}</p>
+      </div>
+      <p><span class="hasErrors">Note:</span> A manual restart of the Nuxt.js dev server may be required</p>
     </div>
     <div v-else-if="preventReload" class="reload_prevented">
       <h3 class="hasErrors">Failed to show Nuxt.js app after {{ maxReloadCount }} reloads</h3>
