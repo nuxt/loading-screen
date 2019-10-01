@@ -9,6 +9,11 @@ export default {
     },
 
     sseConnect (path) {
+      if (typeof EventSource === 'undefined') {
+        this.logSse('EventSource is not supported in current borwser!')
+        return
+      }
+
       this.logSse(`Connecting to ${path}...`)
 
       this.$sse = new EventSource(path)
