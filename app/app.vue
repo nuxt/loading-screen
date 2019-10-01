@@ -25,16 +25,21 @@
     <div v-else-if="hasErrors && errorDescription">
       <h3 class="hasErrors">
         An error occured, please see below or look at Nuxt.js terminal for more info.
-
       </h3>
       <div class="errorStack">
-        <p class="hasErrors">{{ errorDescription }}</p>
-        <p class="pre" v-if="errorStack">{{ errorStack }}</p>
+        <p class="hasErrors">
+          {{ errorDescription }}
+        </p>
+        <p v-if="errorStack" class="pre">
+          {{ errorStack }}
+        </p>
       </div>
       <p><span class="hasErrors">Note:</span> A manual restart of the Nuxt.js dev server may be required</p>
     </div>
     <div v-else-if="preventReload" class="reload_prevented">
-      <h3 class="hasErrors">Failed to show Nuxt.js app after {{ maxReloadCount }} reloads</h3>
+      <h3 class="hasErrors">
+        Failed to show Nuxt.js app after {{ maxReloadCount }} reloads
+      </h3>
       <p>
         Your Nuxt.js app could not be shown even though the webpack build appears to have finished.
       </p>
@@ -77,7 +82,7 @@ export default {
     storageMixin
   ],
 
-  data() {
+  data () {
     return {
       error: false,
       stack: false,
@@ -93,14 +98,13 @@ export default {
     }
   },
 
-  beforeMount() {
+  beforeMount () {
     if (!this.canReload()) {
       this.preventReload = true
-      return
     }
   },
 
-  mounted() {
+  mounted () {
     if (this.preventReload) {
       return
     }
@@ -111,7 +115,7 @@ export default {
   },
 
   methods: {
-    onSseData(data) {
+    onSseData (data) {
       if (this._reloading) {
         return
       }
@@ -122,7 +126,7 @@ export default {
       this.onData(data)
     },
 
-    async fetchData() {
+    async fetchData () {
       if (this._reloading) {
         return
       }
@@ -141,13 +145,13 @@ export default {
       this.setTimeout()
     },
 
-    clearTimeout() {
+    clearTimeout () {
       if (this._fetchTimeout) {
         clearTimeout(this._fetchTimeout)
       }
     },
 
-    setTimeout() {
+    setTimeout () {
       if (this._reloading) {
         return
       }
@@ -156,7 +160,7 @@ export default {
       this._fetchTimeout = setTimeout(() => this.fetchData(), 1000)
     },
 
-    onData(data) {
+    onData (data) {
       if (!data || this._reloading) {
         return
       }
@@ -200,7 +204,7 @@ export default {
       this.hasErrors = hasErrors
     },
 
-    canReload() {
+    canReload () {
       this.reloadCount = parseInt(this.retrieveItem('reloadCount')) || 0
       const lastReloadTime = parseInt(this.retrieveItem('lastReloadTime')) || 0
 
@@ -222,12 +226,12 @@ export default {
       return true
     },
 
-    updateReloadItems() {
+    updateReloadItems () {
       this.storeItem('reloadCount', 1 + this.reloadCount)
       this.storeItem('lastReloadTime', this.loadingTime)
     },
 
-    async reload() {
+    async reload () {
       if (this._reloading) {
         return
       }
