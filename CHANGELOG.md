@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/nuxt/loading-screen/compare/v1.1.0...v1.2.0) (2019-10-01)
+
+
+### Bug Fixes
+
+* ensure EventSource is supported in current browser ([ee4b180](https://github.com/nuxt/loading-screen/commit/ee4b180))
+* typo in var name ([#47](https://github.com/nuxt/loading-screen/issues/47)) ([e47885a](https://github.com/nuxt/loading-screen/commit/e47885a))
+
+
+### Features
+
+* show build error ([#45](https://github.com/nuxt/loading-screen/issues/45)) ([9f23404](https://github.com/nuxt/loading-screen/commit/9f23404))
+
 ## [1.1.0](https://github.com/nuxt/loading-screen/compare/v1.0.1...v1.1.0) (2019-09-21)
 
 
