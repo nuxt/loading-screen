@@ -17,19 +17,19 @@
         <h3>Loading...</h3>
       </transition>
     </div>
-    <div v-else-if="hasErrors && !error">
+    <div v-else-if="hasErrors && !errorDescription">
       <h3 class="hasErrors">
         An error occured, please look at Nuxt.js terminal.
       </h3>
     </div>
-    <div v-else-if="hasErrors && error">
+    <div v-else-if="hasErrors && errorDescription">
       <h3 class="hasErrors">
         An error occured, please see below or look at Nuxt.js terminal for more info.
 
       </h3>
       <div class="errorStack">
-        <p class="hasErrors">{{ error }}</p>
-        <p class="pre" v-if="stack">{{ stack }}</p>
+        <p class="hasErrors">{{ errorDescription }}</p>
+        <p class="pre" v-if="errorStack">{{ errorStack }}</p>
       </div>
       <p><span class="hasErrors">Note:</span> A manual restart of the Nuxt.js dev server may be required</p>
     </div>
@@ -157,31 +157,31 @@ export default {
     },
 
     onData(data) {
-      if (!data || !data.states || this._reloading) {
+      if (!data || this._reloading) {
         return
       }
 
-      if (data.states.length === 1) {
-        const [{ name, error, stack }] = data.states
+      const { error, states, hasErrors, allDone } = data
 
-        if (name === 'error') {
-          this.hasErrors = true
-          this.error = error
-          this.stack = stack
-          return
-        }
+      if (error) {
+        const { description, stack } = error
+
+        this.errorDescription = description
+        this.errorStack = stack
+        this.hasErrors = true
+        return
+      }
+
+      // Ignore if no bundle is active
+      if (!states || !states.length) {
+        return
       }
 
       // Update active bundles
-      this.bundles = data.states.map(state => state.name.toLowerCase())
-
-      // Ignore if no bundle is active
-      if (!this.bundles.length) {
-        return
-      }
+      this.bundles = states.map(state => state.name.toLowerCase())
 
       // Update bundle states
-      for (const state of data.states) {
+      for (const state of states) {
         const bundle = state.name.toLowerCase()
         if (!this.states[bundle]) {
           this.states[bundle] = {}
@@ -191,13 +191,13 @@ export default {
       }
 
       // Try to show nuxt app if allDone and no errors
-      if (!data.hasErrors && data.allDone && !this.allDone) {
+      if (!hasErrors && allDone && !this.allDone) {
         this.reload()
       }
 
       // Update state
-      this.allDone = data.allDone
-      this.hasErrors = data.hasErrors
+      this.allDone = allDone
+      this.hasErrors = hasErrors
     },
 
     canReload() {
