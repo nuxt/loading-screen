@@ -30,7 +30,7 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint-plugin-vue": "^6.1.2",
     "poi": "^12.7.2",
     "standard-version": "^7.0.0",
     "unfetch": "^4.1.0",
