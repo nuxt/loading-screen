@@ -23,18 +23,18 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.1.2",
-    "eslint": "^6.5.1",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.1.2",
-    "poi": "^12.7.2",
-    "standard-version": "^7.0.0",
+    "poi": "^12.7.5",
+    "standard-version": "^7.1.0",
     "unfetch": "^4.1.0",
-    "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
   }
 }
