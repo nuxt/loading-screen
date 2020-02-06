@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nuxt/loading-screen.git"
+    "url": "git+https://github.com/nuxt/screens.git"
   },
   "workspaces": [
     "packages/*"
