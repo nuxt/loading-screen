@@ -1,4 +1,4 @@
-## Nuxt Loading Screen Module
+## Nuxt Screens Module
 
 [![Github Actions CI][github-actions-src]][github-actions-href]
 [![Standard JS][standard-js-src]][standard-js-href]
@@ -6,6 +6,8 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![package phobia][package-phobia-src]][package-phobia-href]
 [![bundle phobia][bundle-phobia-src]][bundle-phobia-href]
+
+### Loading Screen
 
 This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.js) to show loading screen.
 
@@ -15,8 +17,9 @@ This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.j
 
 - Clone this repository
 - `yarn install`
-- `yarn link`
 - `yarn build`
+- `cd packages/loading`
+- `yarn link`
 - Clone [nuxt.js](https://github.com/nuxt/nuxt.js) repository
 - `yarn link @nuxt/loading-screen`
 - `yarn nuxt examples/hello-world -o`
