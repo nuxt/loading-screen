@@ -5,7 +5,8 @@ module.exports = async function NuxtLoadingScreen () {
   const LoadingUI = require('./loading')
 
   const baseURL = this.options.router.base
-  const loading = new LoadingUI({ baseURL })
+  const loadingScreen = this.options.loadingScreen
+  const loading = new LoadingUI({ baseURL, loadingScreen })
   await loading.init()
 
   this.addServerMiddleware({

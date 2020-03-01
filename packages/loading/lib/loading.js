@@ -8,7 +8,7 @@ const { parseStack } = require('./utils/error')
 const SSE = require('./sse')
 
 class LoadingUI {
-  constructor ({ baseURL }) {
+  constructor ({ baseURL, loadingScreen }) {
     // Create a connect middleware stack
     this.app = connect()
 
@@ -16,6 +16,7 @@ class LoadingUI {
     this.sse = new SSE()
 
     this.baseURL = baseURL
+    this.loadingScreen = loadingScreen
     this._lastBroadCast = 0
 
     this.states = []
@@ -91,6 +92,7 @@ class LoadingUI {
     const html = this.indexTemplate
       .replace('{STATE}', JSON.stringify(this.state))
       .replace(/{BASE_URL}/g, this.baseURL)
+      .replace('{LOADING_SCREEN}', JSON.stringify(this.loadingScreen))
 
     header(res, 'Content-Type', 'text/html')
     end(res, html)
