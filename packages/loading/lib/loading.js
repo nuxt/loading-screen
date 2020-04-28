@@ -26,6 +26,13 @@ class LoadingUI {
   }
 
   async init () {
+    // Fix CORS and prefix issue
+    this.app.use((req, res, next) => {
+      req.url = req.url.replace('/_loading', '')
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      next()
+    })
+
     // Subscribe to SSR channel
     this.app.use('/sse', (req, res) => this.sse.subscribe(req, res))
 
@@ -40,6 +47,19 @@ class LoadingUI {
     const indexPath = resolve(distPath, 'index.html')
     this.indexTemplate = await fs.readFile(indexPath, 'utf-8')
     this.app.use('/', this.serveIndex)
+  }
+
+  listen () {
+    return new Promise((resolve, reject) => {
+      const server = this.app.listen(0, (err) => {
+        if (err) {
+          return reject(err)
+        }
+        const { port } = server.address()
+        this.baseURL = `http://localhost:${port}/`
+        resolve()
+      })
+    })
   }
 
   get state () {

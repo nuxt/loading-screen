@@ -7,6 +7,7 @@ module.exports = async function NuxtLoadingScreen () {
   const baseURL = this.options.router.base
   const loading = new LoadingUI({ baseURL })
   await loading.init()
+  await loading.listen()
 
   this.addServerMiddleware({
     path: '/_loading', // baseURL will be prepended by nuxt for middleware
