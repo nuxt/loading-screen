@@ -28,7 +28,7 @@
     "eslint-plugin-vue": "^6.1.2",
     "lerna": "^3.20.2",
     "poi": "^12.7.5",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.0",
     "unfetch": "^4.1.0",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
