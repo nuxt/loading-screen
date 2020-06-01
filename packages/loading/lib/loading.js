@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const connect = require('connect')
 const serveStatic = require('serve-static')
 const fs = require('fs-extra')
+const getPort = require('get-port-plz')
 const { json, end, header } = require('node-res')
 
 const { parseStack } = require('./utils/error')
@@ -51,16 +52,16 @@ class LoadingUI {
     await this._listen()
   }
 
-  _listen () {
+  async _listen () {
+    if (this._server) {
+      return
+    }
+
+    const port = await getPort({ random: true, name: 'nuxt_loading' })
+
     return new Promise((resolve, reject) => {
-      if (this._server) {
-        return resolve()
-      }
-      this._server = this.app.listen(0, (err) => {
-        if (err) {
-          return reject(err)
-        }
-        const { port } = this._server.address()
+      this._server = this.app.listen(port, (err) => {
+        if (err) { return reject(err) }
         this.baseURL = `http://localhost:${port}`
         resolve()
       })
