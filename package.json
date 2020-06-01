@@ -1,19 +1,19 @@
 {
   "name": "@nuxt/screen",
   "private": true,
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nuxt/screens.git"
   },
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint .",
     "build": "yarn workspaces run poi --prod",
-    "prepublish": "yarn build && yarn lint",
     "bump": "yarn lerna version --yes --no-push",
+    "lint": "eslint .",
+    "prepublish": "yarn build && yarn lint",
     "release": "yarn bump && git push --follow-tags && npm publish"
   },
   "devDependencies": {
