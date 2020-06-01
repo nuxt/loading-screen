@@ -17,7 +17,7 @@
     "release": "yarn bump && git push --follow-tags && npm publish"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^2.0.0",
+    "@nuxtjs/eslint-config": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.0",
