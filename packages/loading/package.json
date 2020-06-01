@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "connect": "^3.7.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "get-port-plz": "^0.0.6",
     "node-res": "^5.0.1",
     "serve-static": "^1.14.1"
