@@ -3,14 +3,13 @@ module.exports = async function NuxtLoadingScreen () {
     return
   }
   const LoadingUI = require('./loading')
-
-  const baseURL = this.options.router.base
-  const loading = new LoadingUI({ baseURL })
+  const loading = new LoadingUI()
   await loading.init()
 
-  this.addServerMiddleware({
-    path: '/_loading', // baseURL will be prepended by nuxt for middleware
-    handler: loading.app
+  this.nuxt.options._loadingScreenBaseURL = loading.baseURL
+
+  this.nuxt.hook('close', async () => {
+    await loading.close()
   })
 
   this.nuxt.hook('bundler:progress', (states) => {

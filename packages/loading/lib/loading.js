@@ -2,20 +2,21 @@ const { resolve } = require('path')
 const connect = require('connect')
 const serveStatic = require('serve-static')
 const fs = require('fs-extra')
+const getPort = require('get-port-plz')
 const { json, end, header } = require('node-res')
 
 const { parseStack } = require('./utils/error')
 const SSE = require('./sse')
 
 class LoadingUI {
-  constructor ({ baseURL }) {
+  constructor () {
     // Create a connect middleware stack
     this.app = connect()
 
     // Create an SSE handler instance
     this.sse = new SSE()
 
-    this.baseURL = baseURL
+    this.baseURL = ''
     this._lastBroadCast = 0
 
     this.states = []
@@ -26,6 +27,12 @@ class LoadingUI {
   }
 
   async init () {
+    // Fix CORS
+    this.app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      next()
+    })
+
     // Subscribe to SSR channel
     this.app.use('/sse', (req, res) => this.sse.subscribe(req, res))
 
@@ -40,6 +47,38 @@ class LoadingUI {
     const indexPath = resolve(distPath, 'index.html')
     this.indexTemplate = await fs.readFile(indexPath, 'utf-8')
     this.app.use('/', this.serveIndex)
+
+    // Start listening
+    await this._listen()
+  }
+
+  async _listen () {
+    if (this._server) {
+      return
+    }
+
+    const port = await getPort({ random: true, name: 'nuxt_loading' })
+
+    return new Promise((resolve, reject) => {
+      this._server = this.app.listen(port, (err) => {
+        if (err) { return reject(err) }
+        this.baseURL = `http://localhost:${port}`
+        resolve()
+      })
+    })
+  }
+
+  close () {
+    if (this._server) {
+      return new Promise((resolve, reject) => {
+        this._server.close((err) => {
+          if (err) {
+            return reject(err)
+          }
+          resolve()
+        })
+      })
+    }
   }
 
   get state () {
