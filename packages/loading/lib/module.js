@@ -1,12 +1,14 @@
-module.exports = async function NuxtLoadingScreen () {
+module.exports = function NuxtLoadingScreen () {
   if (!this.options.dev) {
     return
   }
   const LoadingUI = require('./loading')
   const loading = new LoadingUI()
-  await loading.init()
 
-  this.nuxt.options._loadingScreenBaseURL = loading.baseURL
+  this.nuxt.hook('listen', async (_, { url }) => {
+    await loading.init({ url })
+    this.nuxt.options._loadingScreenBaseURL = loading.baseURL
+  })
 
   this.nuxt.hook('close', async () => {
     await loading.close()

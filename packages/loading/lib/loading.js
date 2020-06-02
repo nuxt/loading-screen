@@ -26,7 +26,10 @@ class LoadingUI {
     this.serveIndex = this.serveIndex.bind(this)
   }
 
-  async init () {
+  async init ({ url }) {
+    if (this._init) { return }
+    this._init = true
+
     // Fix CORS
     this.app.use((req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*')
@@ -39,14 +42,20 @@ class LoadingUI {
     // Serve state with JSON
     this.app.use('/json', (req, res) => json(req, res, this.state))
 
-    // Serve dist
-    const distPath = resolve(__dirname, '..', 'app-dist')
-    this.app.use('/', serveStatic(distPath))
+    // Serve assets
+    const distPath = resolve(__dirname, '../app-dist')
+    this.app.use('/assets', serveStatic(resolve(distPath, 'assets')))
 
-    // Serve index.html
+    // Load indexTemplate
     const indexPath = resolve(distPath, 'index.html')
     this.indexTemplate = await fs.readFile(indexPath, 'utf-8')
-    this.app.use('/', this.serveIndex)
+
+    // Redirect users directly open this port
+    this.app.use('/', (req, res) => {
+      res.setHeader('Location', url)
+      res.statusCode = 307
+      res.end(url)
+    })
 
     // Start listening
     await this._listen()
