@@ -137,7 +137,7 @@ class LoadingUI {
 
   serveIndex (req, res) {
     const html = this.indexTemplate
-      .replace('{STATE}', JSON.stringify(this.state))
+      .replace('__STATE__', JSON.stringify(this.state))
       .replace(/{BASE_URL}/g, this.baseURL)
 
     header(res, 'Content-Type', 'text/html')
