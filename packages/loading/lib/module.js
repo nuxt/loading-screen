@@ -5,21 +5,27 @@ module.exports = function NuxtLoadingScreen () {
     return
   }
 
+  const baseURL = nuxt.options.router.base + '_loading'
+  nuxt.options._loadingScreenBaseURL = baseURL
+
   const LoadingUI = require('./loading')
 
-  const loading = new LoadingUI({
-    baseURL: nuxt.options.router.base + '_loading'
-  })
+  const loading = new LoadingUI({ baseURL })
 
   nuxt.options.serverMiddleware.push({
     path: '/_loading',
     handler: (req, res) => { loading.app(req, res) }
   })
 
-  nuxt.hook('listen', async (_, { url }) => {
-    await loading.initAlt({ url })
-    nuxt.options._loadingScreenBaseURL = loading.baseURLAlt
-  })
+  if (
+    nuxt.options.loading.altPort !== false &&
+    !process.env.CODESANDBOX_SSE
+  ) {
+    nuxt.hook('listen', async (_, { url }) => {
+      await loading.initAlt({ url })
+      nuxt.options._loadingScreenBaseURL = loading.baseURLAlt
+    })
+  }
 
   nuxt.hook('close', async () => {
     await loading.close()
