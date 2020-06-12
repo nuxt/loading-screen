@@ -93,6 +93,7 @@ export default {
       preventReload: false,
       manualReload: false,
       baseURL: window.$BASE_URL,
+      baseURLAlt: window.$BASE_URL_ALT,
       bundles: [],
       states: {}
     }
@@ -110,7 +111,7 @@ export default {
     }
 
     this.onData(window.$STATE)
-    this.sseConnect(`${this.baseURL}/sse`)
+    this.sseConnect(`${this.baseURLAlt}/sse`)
     this.setTimeout()
   },
 

@@ -1,7 +1,7 @@
 const { resolve } = require('path')
+const { readFileSync } = require('fs')
 const connect = require('connect')
 const serveStatic = require('serve-static')
-const fs = require('fs-extra')
 const getPort = require('get-port-plz')
 const { json, end, header } = require('node-res')
 
@@ -9,19 +9,25 @@ const { parseStack } = require('./utils/error')
 const SSE = require('./sse')
 
 class LoadingUI {
-  constructor () {
+  constructor ({ baseURL = '/' } = {}) {
     // Create a connect middleware stack
     this.app = connect()
 
     // Create an SSE handler instance
     this.sse = new SSE()
 
-    this.baseURL = ''
+    this.baseURL = baseURL
+    this.baseURLAlt = baseURL
+
     this._lastBroadCast = 0
 
     this.states = []
     this.allDone = true
     this.hasErrors = false
+
+    // Load indexTemplate
+    this.distPath = resolve(__dirname, '../app-dist')
+    this.indexTemplate = readFileSync(resolve(this.distPath, 'index.html'), 'utf-8')
 
     this.serveIndex = this.serveIndex.bind(this)
   }
@@ -43,12 +49,7 @@ class LoadingUI {
     this.app.use('/json', (req, res) => json(req, res, this.state))
 
     // Serve assets
-    const distPath = resolve(__dirname, '../app-dist')
-    this.app.use('/assets', serveStatic(resolve(distPath, 'assets')))
-
-    // Load indexTemplate
-    const indexPath = resolve(distPath, 'index.html')
-    this.indexTemplate = await fs.readFile(indexPath, 'utf-8')
+    this.app.use('/assets', serveStatic(resolve(this.distPath, 'assets')))
 
     // Redirect users directly open this port
     this.app.use('/', (req, res) => {
@@ -57,7 +58,7 @@ class LoadingUI {
       res.end(url)
     })
 
-    // Start listening
+    // Start listening on alternative port
     await this._listen()
   }
 
@@ -71,7 +72,7 @@ class LoadingUI {
     return new Promise((resolve, reject) => {
       this._server = this.app.listen(port, (err) => {
         if (err) { return reject(err) }
-        this.baseURL = `http://localhost:${port}`
+        this.baseURLAlt = `http://localhost:${port}`
         resolve()
       })
     })
@@ -137,8 +138,9 @@ class LoadingUI {
 
   serveIndex (req, res) {
     const html = this.indexTemplate
-      .replace('__STATE__', JSON.stringify(this.state))
-      .replace(/{BASE_URL}/g, this.baseURL)
+      .replace(/__STATE__/g, JSON.stringify(this.state))
+      .replace(/__BASE_URL__/g, this.baseURL)
+      .replace(/__BASE_URL_ALT__/g, this.baseURLAlt)
 
     header(res, 'Content-Type', 'text/html')
     end(res, html)
