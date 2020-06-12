@@ -4,7 +4,9 @@ module.exports = function NuxtLoadingScreen () {
   if (!this.options.dev) {
     return
   }
+
   const LoadingUI = require('./loading')
+
   const loading = new LoadingUI({
     baseURL: nuxt.options.router.base + '_loading'
   })
@@ -15,7 +17,7 @@ module.exports = function NuxtLoadingScreen () {
   })
 
   nuxt.hook('listen', async (_, { url }) => {
-    await loading.init({ url })
+    await loading.initAlt({ url })
     nuxt.options._loadingScreenBaseURL = loading.baseURLAlt
   })
 

@@ -10,31 +10,26 @@ const SSE = require('./sse')
 
 class LoadingUI {
   constructor ({ baseURL = '/' } = {}) {
-    // Create a connect middleware stack
-    this.app = connect()
-
-    // Create an SSE handler instance
-    this.sse = new SSE()
-
     this.baseURL = baseURL
     this.baseURLAlt = baseURL
 
-    this._lastBroadCast = 0
+    this._lastBroadcast = 0
 
     this.states = []
     this.allDone = true
     this.hasErrors = false
 
-    // Load indexTemplate
-    this.distPath = resolve(__dirname, '../app-dist')
-    this.indexTemplate = readFileSync(resolve(this.distPath, 'index.html'), 'utf-8')
-
     this.serveIndex = this.serveIndex.bind(this)
+
+    this._init()
   }
 
-  async init ({ url }) {
-    if (this._init) { return }
-    this._init = true
+  _init () {
+    // Create a connect middleware stack
+    this.app = connect()
+
+    // Create an SSE handler instance
+    this.sse = new SSE()
 
     // Fix CORS
     this.app.use((req, res, next) => {
@@ -48,8 +43,18 @@ class LoadingUI {
     // Serve state with JSON
     this.app.use('/json', (req, res) => json(req, res, this.state))
 
+    // Load indexTemplate
+    const distPath = resolve(__dirname, '../app-dist')
+    this.indexTemplate = readFileSync(resolve(distPath, 'index.html'), 'utf-8')
+
     // Serve assets
-    this.app.use('/assets', serveStatic(resolve(this.distPath, 'assets')))
+    this.app.use('/assets', serveStatic(resolve(distPath, 'assets')))
+  }
+
+  async initAlt ({ url }) {
+    if (this._server) {
+      return
+    }
 
     // Redirect users directly open this port
     this.app.use('/', (req, res) => {
@@ -59,14 +64,6 @@ class LoadingUI {
     })
 
     // Start listening on alternative port
-    await this._listen()
-  }
-
-  async _listen () {
-    if (this._server) {
-      return
-    }
-
     const port = await getPort({ random: true, name: 'nuxt_loading' })
 
     return new Promise((resolve, reject) => {
@@ -130,9 +127,9 @@ class LoadingUI {
   broadcastState () {
     const now = new Date()
 
-    if ((now - this._lastBroadCast > 500) || this.allDone || this.hasErrors) {
+    if ((now - this._lastBroadcast > 500) || this.allDone || this.hasErrors) {
       this.sse.broadcast('state', this.state)
-      this._lastBroadCast = now
+      this._lastBroadcast = now
     }
   }
 
