@@ -9,9 +9,8 @@ const { parseStack } = require('./utils/error')
 const SSE = require('./sse')
 
 class LoadingUI {
-  constructor ({ baseURL = '/' } = {}) {
-    this.baseURL = baseURL
-    this.baseURLAlt = baseURL
+  constructor (options) {
+    this.options = options
 
     this._lastBroadcast = 0
 
@@ -52,7 +51,7 @@ class LoadingUI {
   }
 
   async initAlt ({ url }) {
-    if (this._server) {
+    if (this._server || this.options.baseURLAlt) {
       return
     }
 
@@ -69,7 +68,7 @@ class LoadingUI {
     return new Promise((resolve, reject) => {
       this._server = this.app.listen(port, (err) => {
         if (err) { return reject(err) }
-        this.baseURLAlt = `http://localhost:${port}`
+        this.options.baseURLAlt = `http://localhost:${port}`
         resolve()
       })
     })
@@ -135,9 +134,9 @@ class LoadingUI {
 
   serveIndex (req, res) {
     const html = this.indexTemplate
-      .replace(/__STATE__/g, JSON.stringify(this.state))
-      .replace(/__BASE_URL__/g, this.baseURL)
-      .replace(/__BASE_URL_ALT__/g, this.baseURLAlt)
+      .replace('__STATE__', JSON.stringify(this.state))
+      .replace('__OPTIONS__', JSON.stringify(this.options))
+      .replace(/__BASE_URL__/g, this.options.baseURL)
 
     header(res, 'Content-Type', 'text/html')
     end(res, html)

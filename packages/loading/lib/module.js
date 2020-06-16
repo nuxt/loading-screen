@@ -1,29 +1,33 @@
 module.exports = function NuxtLoadingScreen () {
-  const { nuxt } = this
-
   if (!this.options.dev) {
     return
   }
 
-  const baseURL = nuxt.options.router.base + '_loading'
-  nuxt.options._loadingScreenBaseURL = baseURL
-
+  const defu = require('defu')
   const LoadingUI = require('./loading')
 
-  const loading = new LoadingUI({ baseURL })
+  const { nuxt } = this
+
+  const options = defu(this.options.build.loadingScreen, {
+    baseURL: nuxt.options.router.base + '_loading',
+    altPort: !process.env.CODESANDBOX_SSE,
+    image: undefined,
+    colors: {}
+  })
+
+  nuxt.options._loadingScreenBaseURL = options.baseURL
+
+  const loading = new LoadingUI(options)
 
   nuxt.options.serverMiddleware.push({
     path: '/_loading',
     handler: (req, res) => { loading.app(req, res) }
   })
 
-  if (
-    nuxt.options.loading.altPort !== false &&
-    !process.env.CODESANDBOX_SSE
-  ) {
+  if (options.altPort !== false) {
     nuxt.hook('listen', async (_, { url }) => {
       await loading.initAlt({ url })
-      nuxt.options._loadingScreenBaseURL = loading.baseURLAlt
+      nuxt.options._loadingScreenBaseURL = loading.options.baseURLAlt
     })
   }
 
