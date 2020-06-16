@@ -8,14 +8,12 @@ module.exports = function NuxtLoadingScreen () {
 
   const { nuxt } = this
 
-  const options = defu(this.options.build.loadingScreen, {
+  const options = this.options.build.loadingScreen = defu(this.options.build.loadingScreen, {
     baseURL: nuxt.options.router.base + '_loading',
     altPort: !process.env.CODESANDBOX_SSE,
     image: undefined,
     colors: {}
   })
-
-  nuxt.options._loadingScreenBaseURL = options.baseURL
 
   const loading = new LoadingUI(options)
 
@@ -27,7 +25,6 @@ module.exports = function NuxtLoadingScreen () {
   if (options.altPort !== false) {
     nuxt.hook('listen', async (_, { url }) => {
       await loading.initAlt({ url })
-      nuxt.options._loadingScreenBaseURL = loading.options.baseURLAlt
     })
   }
 
