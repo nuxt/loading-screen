@@ -10,7 +10,9 @@ module.exports = function NuxtLoadingScreen () {
 
   const options = defu(this.options.build.loadingScreen, {
     baseURL: nuxt.options.router.base + '_loading',
-    altPort: !process.env.CODESANDBOX_SSE
+    altPort: !process.env.CODESANDBOX_SSE,
+    image: undefined,
+    colors: {}
   })
 
   nuxt.options._loadingScreenBaseURL = options.baseURL
