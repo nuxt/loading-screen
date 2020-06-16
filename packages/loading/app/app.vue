@@ -13,7 +13,7 @@
           </svg>
         </template>
         <template v-else>
-          <img :src="options.image">
+          <img :src="options.image" style="max-width: 220px; max-height: 166px;">
         </template>
       </transition>
     </div>
