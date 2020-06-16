@@ -97,8 +97,6 @@ export default {
       maxReloadCount: 5,
       preventReload: false,
       manualReload: false,
-      baseURL: window.$BASE_URL,
-      baseURLAlt: window.$BASE_URL_ALT,
       bundles: [],
       states: {},
       options: window.$OPTIONS || {}
@@ -117,7 +115,7 @@ export default {
     }
 
     this.onData(window.$STATE)
-    this.sseConnect(`${this.baseURLAlt}/sse`)
+    this.sseConnect(`${this.options.baseURLAlt}/sse`)
     this.setTimeout()
   },
 
@@ -142,7 +140,7 @@ export default {
       this.clearTimeout()
 
       try {
-        const data = await fetch(`${this.baseURL}/json`).then(res => res.json())
+        const data = await fetch(`${this.options.baseURL}/json`).then(res => res.json())
         this.onData(data)
       } catch (e) {
         this.logError(e)
