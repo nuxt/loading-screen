@@ -2,7 +2,7 @@
   <div class="loading-screen" :class="{ hide: allDone && !preventReload }">
     <div class="row">
       <transition appear>
-        <template v-if="!loadingScreen.image">
+        <template v-if="!options.image">
           <svg class="logo" width="220" height="166" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(-18 -29)" fill="none" fill-rule="evenodd">
               <path d="M0 176h67.883a22.32 22.32 0 0 1 2.453-7.296L134 57.718 100.881 0 0 176zM218.694 176H250L167.823 32 153 58.152l62.967 110.579a21.559 21.559 0 0 1 2.727 7.269z" />
@@ -13,7 +13,7 @@
           </svg>
         </template>
         <template v-else>
-          <img :src="loadingScreen.image" />
+          <img :src="options.image">
         </template>
       </transition>
     </div>
@@ -101,7 +101,7 @@ export default {
       baseURLAlt: window.$BASE_URL_ALT,
       bundles: [],
       states: {},
-      loadingScreen: window.$LOADING_SCREEN || {}
+      options: window.$OPTIONS || {}
     }
   },
 
