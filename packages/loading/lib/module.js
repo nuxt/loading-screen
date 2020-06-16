@@ -21,7 +21,7 @@ module.exports = function NuxtLoadingScreen () {
   })
 
   if (
-    nuxt.options.loading.altPort !== false &&
+    loading.options.altPort !== false &&
     !process.env.CODESANDBOX_SSE
   ) {
     nuxt.hook('listen', async (_, { url }) => {
