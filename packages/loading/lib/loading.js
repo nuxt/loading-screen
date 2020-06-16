@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const { readFileSync } = require('fs')
 const connect = require('connect')
 const serveStatic = require('serve-static')
-const getPort = require('get-port-plz')
+const getPort = require('get-port-please')
 const { json, end, header } = require('node-res')
 
 const { parseStack } = require('./utils/error')
