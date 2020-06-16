@@ -1,46 +1,92 @@
 const { resolve } = require('path')
+const { readFileSync } = require('fs')
 const connect = require('connect')
 const serveStatic = require('serve-static')
-const fs = require('fs-extra')
+const getPort = require('get-port-plz')
 const { json, end, header } = require('node-res')
 
 const { parseStack } = require('./utils/error')
 const SSE = require('./sse')
 
 class LoadingUI {
-  constructor ({ baseURL, loadingScreen }) {
-    // Create a connect middleware stack
-    this.app = connect()
-
-    // Create an SSE handler instance
-    this.sse = new SSE()
-
+  constructor ({ baseURL = '/', options } = {}) {
     this.baseURL = baseURL
-    this.loadingScreen = loadingScreen
-    this._lastBroadCast = 0
+    this.baseURLAlt = baseURL
+    this.options = options
+
+    this._lastBroadcast = 0
 
     this.states = []
     this.allDone = true
     this.hasErrors = false
 
     this.serveIndex = this.serveIndex.bind(this)
+
+    this._init()
   }
 
-  async init () {
+  _init () {
+    // Create a connect middleware stack
+    this.app = connect()
+
+    // Create an SSE handler instance
+    this.sse = new SSE()
+
+    // Fix CORS
+    this.app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      next()
+    })
+
     // Subscribe to SSR channel
     this.app.use('/sse', (req, res) => this.sse.subscribe(req, res))
 
     // Serve state with JSON
     this.app.use('/json', (req, res) => json(req, res, this.state))
 
-    // Serve dist
-    const distPath = resolve(__dirname, '..', 'app-dist')
-    this.app.use('/', serveStatic(distPath))
+    // Load indexTemplate
+    const distPath = resolve(__dirname, '../app-dist')
+    this.indexTemplate = readFileSync(resolve(distPath, 'index.html'), 'utf-8')
 
-    // Serve index.html
-    const indexPath = resolve(distPath, 'index.html')
-    this.indexTemplate = await fs.readFile(indexPath, 'utf-8')
-    this.app.use('/', this.serveIndex)
+    // Serve assets
+    this.app.use('/assets', serveStatic(resolve(distPath, 'assets')))
+  }
+
+  async initAlt ({ url }) {
+    if (this._server) {
+      return
+    }
+
+    // Redirect users directly open this port
+    this.app.use('/', (req, res) => {
+      res.setHeader('Location', url)
+      res.statusCode = 307
+      res.end(url)
+    })
+
+    // Start listening on alternative port
+    const port = await getPort({ random: true, name: 'nuxt_loading' })
+
+    return new Promise((resolve, reject) => {
+      this._server = this.app.listen(port, (err) => {
+        if (err) { return reject(err) }
+        this.baseURLAlt = `http://localhost:${port}`
+        resolve()
+      })
+    })
+  }
+
+  close () {
+    if (this._server) {
+      return new Promise((resolve, reject) => {
+        this._server.close((err) => {
+          if (err) {
+            return reject(err)
+          }
+          resolve()
+        })
+      })
+    }
   }
 
   get state () {
@@ -82,17 +128,18 @@ class LoadingUI {
   broadcastState () {
     const now = new Date()
 
-    if ((now - this._lastBroadCast > 500) || this.allDone || this.hasErrors) {
+    if ((now - this._lastBroadcast > 500) || this.allDone || this.hasErrors) {
       this.sse.broadcast('state', this.state)
-      this._lastBroadCast = now
+      this._lastBroadcast = now
     }
   }
 
   serveIndex (req, res) {
     const html = this.indexTemplate
-      .replace('{STATE}', JSON.stringify(this.state))
-      .replace(/{BASE_URL}/g, this.baseURL)
-      .replace('{LOADING_SCREEN}', JSON.stringify(this.loadingScreen))
+      .replace(/__STATE__/g, JSON.stringify(this.state))
+      .replace(/__OPTIONS__/g, JSON.stringify(this.options))
+      .replace(/__BASE_URL__/g, this.baseURL)
+      .replace(/__BASE_URL_ALT__/g, this.baseURLAlt)
 
     header(res, 'Content-Type', 'text/html')
     end(res, html)

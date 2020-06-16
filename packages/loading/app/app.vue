@@ -98,6 +98,7 @@ export default {
       preventReload: false,
       manualReload: false,
       baseURL: window.$BASE_URL,
+      baseURLAlt: window.$BASE_URL_ALT,
       bundles: [],
       states: {},
       loadingScreen: window.$LOADING_SCREEN || {}
@@ -116,7 +117,7 @@ export default {
     }
 
     this.onData(window.$STATE)
-    this.sseConnect(`${this.baseURL}_loading/sse`)
+    this.sseConnect(`${this.baseURLAlt}/sse`)
     this.setTimeout()
   },
 
@@ -141,7 +142,7 @@ export default {
       this.clearTimeout()
 
       try {
-        const data = await fetch(`${this.baseURL}_loading/json`).then(res => res.json())
+        const data = await fetch(`${this.baseURL}/json`).then(res => res.json())
         this.onData(data)
       } catch (e) {
         this.logError(e)
