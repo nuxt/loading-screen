@@ -1,3 +1,34 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 2.0.0 (2020-06-18)
+
+
+### Bug Fixes
+
+* {STATE} was being interpolated by poi ([69955ff](https://github.com/nuxt/loading-screen/commit/69955ff334fcc25229ab2ad16825e54c52f69a34))
+* getPort import ([f04edfe](https://github.com/nuxt/loading-screen/commit/f04edfe413f1c4e2ccb306c727a1c7d0a5a81f1a))
+* lazy listen and redirect users directly opening port ([cdb0b04](https://github.com/nuxt/loading-screen/commit/cdb0b042ed069f95aaddcac5af07fe9ea48b5e18))
+
+
+### Features
+
+* allow customisation with options ([#57](https://github.com/nuxt/loading-screen/issues/57)) ([ee40ac5](https://github.com/nuxt/loading-screen/commit/ee40ac52e5f69c3fbfb5515fcf92975bd6b3a30e)), closes [#43](https://github.com/nuxt/loading-screen/issues/43)
+* altPort option and disable for codesandbox ([f176eb3](https://github.com/nuxt/loading-screen/commit/f176eb3abe9cb05711cf75951c9293dce633ae2c))
+* listen on new port ([#60](https://github.com/nuxt/loading-screen/issues/60)) ([119a032](https://github.com/nuxt/loading-screen/commit/119a032cc3d3ac17e540aabd093a61d46b9dae81))
+* use baseURLAlt only for SSE ([9f27089](https://github.com/nuxt/loading-screen/commit/9f27089933b2cee45d246987393faefe78be71fb))
+
+
+### BREAKING CHANGES
+
+* no longer adding serverMiddleware
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
