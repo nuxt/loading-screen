@@ -14,7 +14,7 @@
     "bump": "yarn lerna version --yes --no-push",
     "lint": "eslint .",
     "prepublish": "yarn build && yarn lint",
-    "release": "yarn bump && git push --follow-tags && npm publish"
+    "release": "yarn bump && git push --follow-tags && cd packages/loading && npm publish"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "latest",
