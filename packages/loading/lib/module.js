@@ -10,7 +10,7 @@ module.exports = function NuxtLoadingScreen () {
 
   const options = this.options.build.loadingScreen = defu(this.options.build.loadingScreen, {
     baseURL: nuxt.options.router.base + '_loading',
-    altPort: !process.env.CODESANDBOX_SSE,
+    altPort: false,
     image: undefined,
     colors: {}
   })
@@ -22,7 +22,7 @@ module.exports = function NuxtLoadingScreen () {
     handler: (req, res) => { loading.app(req, res) }
   })
 
-  if (options.altPort !== false) {
+  if (options.altPort) {
     nuxt.hook('listen', async (_, { url }) => {
       await loading.initAlt({ url })
     })
