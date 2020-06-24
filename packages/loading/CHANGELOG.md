@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.0...@nuxt/loading-screen@2.0.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* disable altPort by default ([fb344b3](https://github.com/nuxt/loading-screen/commit/fb344b374b7722d998b7bb19ae05428c29ef7a8d))
+
+
+
+
+
 # 2.0.0 (2020-06-18)
 
 
