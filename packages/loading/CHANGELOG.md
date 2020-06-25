@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.1...@nuxt/loading-screen@2.0.2) (2020-06-25)
+
+
+### Bug Fixes
+
+* **module:** set default value for baseURLAlt ([dbd3b29](https://github.com/nuxt/loading-screen/commit/dbd3b29327bf0b856f8364e4a060e4d0f26d38b3))
+
+
+
+
+
 ## [2.0.1](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.0...@nuxt/loading-screen@2.0.1) (2020-06-24)
 
 
