@@ -5,7 +5,6 @@ module.exports = function NuxtLoadingScreen () {
 
   const defu = require('defu')
   const LoadingUI = require('./loading')
-console.log('Debbie')
   const { nuxt } = this
 
   // Tip
