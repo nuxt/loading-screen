@@ -1,0 +1,12 @@
+[
+  {
+    "message": "You can run <code>npx nuxt build -a</code> to analyze your production bundle! <br><br> <a href=\"https://nuxtjs.org\" target=\"_blank\">See the docs for more info</a>"
+  },
+  {
+    "message": "You can use middleware</a> to redirect a user when authenticated with <code>redirect('/login')</code>.<br><br><a href=\"https://nuxtjs.org/guides/concepts/context-helpers#redirecting-users--accessing-the-store\">See the docs for more info</a>"
+  },
+  {
+    "message": "You can use the <code>$nuxt.isOffline</code> to print a message if the user is offline. <br><br><a href=\"https://nuxtjs.org/guides/concepts/context-helpers#connection-checker\">See the docs for more info</a>"
+  }
+
+]

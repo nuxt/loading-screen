@@ -105,3 +105,42 @@ h4 {
   background-color: #2F495E;
 }
 
+.alert{
+  max-width: 85vw;
+  background-color: #ebf8ff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #63b3ed;
+}
+.alert-wrapper{
+  display:flex;
+  align-items: center;
+}
+.alert-icon{
+  padding-top: .25rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.alert-icon svg{
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+.alert-content{
+  font-family: 'Quicksand', sans-serif;
+  color: #2f495e;
+  font-size: .875rem;
+  font-weight: 500;
+  margin-left: .5rem;
+}
+.alert-content code{
+  color:#f07178;
+  font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+.alert-content a{
+  color:#00c58e;
+  text-decoration:none;
+}
+.alert-content a:hover{
+  text-decoration:underline;
+}
