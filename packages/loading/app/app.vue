@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-screen" :class="{ hide: false /*allDone*/ && !preventReload }">
+  <div class="loading-screen" :class="{ hide: allDone && !preventReload }">
     <div class="row">
       <transition appear>
         <template v-if="!options.image">

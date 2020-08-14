@@ -24,9 +24,9 @@ module.exports = function NuxtLoadingScreen () {
   const getTip = () => {
     const { text, link, version } = motd(motdMessages, motdOptions) || {}
     // eslint-disable-next-line no-console
-    console.info(text)
+    console.info('💡' + text)
     // eslint-disable-next-line no-console
-    console.info(terminalLink('See the docs for more info', link))
+    console.info(terminalLink('📚 Docs', link))
     return { text, link, version }
   }
 
