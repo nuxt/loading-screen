@@ -30,7 +30,8 @@
             </svg>
           </div>
           <div class="alert-content">
-            <p v-html="options.tip" />
+            <p v-html="options.tip.text" />
+            <p><a :href="options.tip.link">See the docs for more info</a></p>
           </div>
         </div>
       </div>

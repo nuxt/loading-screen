@@ -1,12 +1,42 @@
 [
   {
-    "message": "You can run <code>npx nuxt build -a</code> to analyze your production bundle! <br> <a href=\"https://nuxtjs.org\" target=\"_blank\">See the docs for more info</a>"
+    "message": {
+      "text": "You can use middleware to redirect a user when authenticated with <code>redirect('/login')</code>.",
+      "link": "https://nuxtjs.org/guides/concepts/context-helpers#redirecting-users--accessing-the-store"
+    },
+    "tags": [
+      {
+        "name": "version",
+        "type": "semver",
+        "value": "v2.x"
+      }
+    ]
   },
   {
-    "message": "You can use middleware</a> to redirect a user when authenticated with <code>redirect('/login')</code>.<br><a href=\"https://nuxtjs.org/guides/concepts/context-helpers#redirecting-users--accessing-the-store\">See the docs for more info</a>"
+    "message": {
+      "text": "You can use the <code>$nuxt.isOffline</code> to print a message if the user is offline.",
+      "link": "https://nuxtjs.org/guides/concepts/context-helpers#connection-checker",
+      "tags": [
+        {
+          "name": "version",
+          "type": "semver",
+          "value": "v2.x"
+        }
+      ]
+    }
   },
   {
-    "message": "You can use the <code>$nuxt.isOffline</code> to print a message if the user is offline. <br><a href=\"https://nuxtjs.org/guides/concepts/context-helpers#connection-checker\">See the docs for more info</a>"
+    "message": {
+      "text": "You can use <code>$nuxt.refresh()</code> to refresh the current page without fully reloading the page",
+      "link": "https://nuxtjs.org/guides/concepts/context-helpers#refreshing-page-data",
+      "tags": [
+        {
+          "name": "version",
+          "type": "semver",
+          "value": "v2.x"
+        }
+      ]
+    }
   }
 
 ]
