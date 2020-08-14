@@ -32,5 +32,8 @@
     "unfetch": "latest",
     "vue": "latest",
     "vue-template-compiler": "latest"
+  },
+  "dependencies": {
+    "terminal-link": "^2.1.1"
   }
 }

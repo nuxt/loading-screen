@@ -19,9 +19,14 @@ module.exports = function NuxtLoadingScreen () {
       ]
     }
   }
+  const terminalLink = require('terminal-link')
+
   const getTip = () => {
     const { text, link, version } = motd(motdMessages, motdOptions) || {}
+    // eslint-disable-next-line no-console
     console.info(text)
+    // eslint-disable-next-line no-console
+    console.info(terminalLink('See the docs for more info', link))
     return { text, link, version }
   }
 
