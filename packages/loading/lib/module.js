@@ -20,9 +20,9 @@ module.exports = function NuxtLoadingScreen () {
     }
   }
   const getTip = () => {
-    const { text, link } = motd(motdMessages, motdOptions) || {}
+    const { text, link, version } = motd(motdMessages, motdOptions) || {}
     console.info(text)
-    return { text, link }
+    return { text, link, version }
   }
 
   const baseURL = nuxt.options.router.base + '_loading'
