@@ -1,4 +1,6 @@
 import 'console-emojis'
+const boxen = require('boxen')
+const terminalLink = require('terminal-link')
 
 module.exports = function NuxtLoadingScreen () {
   if (!this.options.dev) {
@@ -21,7 +23,6 @@ module.exports = function NuxtLoadingScreen () {
       ]
     }
   }
-  const terminalLink = require('terminal-link')
 
   const getTip = () => {
     const { text, link, version } = motd(motdMessages, motdOptions) || {}
@@ -29,6 +30,8 @@ module.exports = function NuxtLoadingScreen () {
     console.bulb(text)
     // eslint-disable-next-line no-console
     console.books(terminalLink('Docs', link))
+    console.log(boxen('💡' + text, { padding: 1 }))
+
     return { text, link, version }
   }
 
