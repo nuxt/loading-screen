@@ -70,7 +70,7 @@
             </div>
             <div class="alert-content">
               <p v-html="options.tip.text" />
-              <p><a :href="options.tip.link">See the docs for more info</a></p>
+              <p><a class="alert-button" :href="options.tip.link">Docs</a></p>
             </div>
           </div>
         </div>

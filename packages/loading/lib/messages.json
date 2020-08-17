@@ -1,21 +1,21 @@
 [
   {
     "message": {
-      "text": "You can use middleware to redirect a user when authenticated with redirect('/login').",
+      "text": "You can use middleware to redirect a user when authenticated with `redirect('/login')`.",
       "link": "https://nuxtjs.org/guides/concepts/context-helpers#redirecting-users--accessing-the-store",
       "version": "v2.x"
     }
   },
   {
     "message": {
-      "text": "You can use the $nuxt.isOffline to print a message if the user is offline.",
+      "text": "You can use the `$nuxt.isOffline` to print a message if the user is offline.",
       "link": "https://nuxtjs.org/guides/concepts/context-helpers#connection-checker",
       "version": "v2.x"
     }
   },
   {
     "message": {
-      "text": "You can use $nuxt.refresh() to refresh the current page without fully reloading the page",
+      "text": "You can use `$nuxt.refresh()` to refresh the current page without fully reloading the page",
       "link": "https://nuxtjs.org/guides/concepts/context-helpers#refreshing-page-data",
       "version": "v2.x"
     }
