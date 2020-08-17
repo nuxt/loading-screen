@@ -148,7 +148,7 @@ export default {
     },
 
     formatTip () {
-      const tip = this.options.tip.text
+      const tip = this.options.tip.text.replace(/(<([^>]+)>)/gi, '')
       const formatedTip = tip.replace('`', '<code>').replace('`', '</code>')
       return formatedTip
     },
