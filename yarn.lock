@@ -3437,6 +3437,11 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
+console-emojis@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/console-emojis/-/console-emojis-1.0.4.tgz#1532a1215ce7a99abbddd6beb5db73ffcbf08805"
+  integrity sha512-+1K6dr1Z9C7bykmCxHRycnBm8FR8RhFwvR/hgtJTNNoKk3pG/pa0rMjS8qwEXCRFlucqPyvMFgTAYl+CQiR4iQ==
+
 consolidate@^0.15.1:
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/consolidate/-/consolidate-0.15.1.tgz#21ab043235c71a07d45d9aad98593b0dba56bab7"
