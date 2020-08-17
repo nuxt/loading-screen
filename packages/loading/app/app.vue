@@ -70,7 +70,7 @@
             </div>
             <div class="alert-content">
               <p>
-              <span v-html="options.tip.text" > </span><a class="alert-button" :href="options.tip.link">Docs</a>
+              <span v-html="formatTip()" > </span><a class="alert-button" :href="options.tip.link">Docs</a>
               </p>
             </div>
           </div>
@@ -145,6 +145,12 @@ export default {
       this.setTimeout()
 
       this.onData(data)
+    },
+
+    formatTip () {
+      const tip = this.options.tip.text
+      const formatedTip = tip.replace('`', '<code>').replace('`', '</code>')
+      return formatedTip
     },
 
     async fetchData () {
