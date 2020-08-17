@@ -19,5 +19,124 @@
       "link": "https://nuxtjs.org/guides/concepts/context-helpers#refreshing-page-data",
       "version": "v2.x"
     }
+  },
+  {
+    "message": {
+      "text": "You can use process helpers such as `process.client` to help you determine whether your app was rendered on the server or fully on the client.",
+      "link": "https://nuxtjs.org/guides/concepts/context-helpers#process-helpers",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can generate a static site by adding `target: static` to your nuxt.js config with `mode:universal` and using the `generate` command.",
+      "link": "https://nuxtjs.org/guides/features/deployment-targets#static-hosting",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can build a single page application by adding `mode: spa` to your nuxt.js config and using the `build` command.",
+      "link": "https://nuxtjs.org/guides/features/rendering-modes#spa",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can generate a SSR application by adding `target: server` to your nuxt.js with `mode: universal` which are the default values and using the `build` command.",
+      "link": "https://nuxtjs.org/guides/features/deployment-targets#server-hosting",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can create a dynamic route by prefixing an `_` to your filename",
+      "link": "https://nuxtjs.org/guides/features/file-system-routing#dynamic-routes",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can access the current route parameters with `this.$route.params`",
+      "link": "https://nuxtjs.org/guides/features/file-system-routing#locally-accessing-route-params",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can use `_.vue` to dynamically match nested paths if you do not know the dept of your URL structure",
+      "link": "https://nuxtjs.org/guides/features/file-system-routing#unknown-dynamic-nested-routes",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can customize the Nuxt.js router with the `router` property in your nuxt.js config",
+      "link": "https://nuxtjs.org/guides/features/file-system-routing#the-router-property",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can use the `fetch` hook to fetch data in your components which is called after the component instance is created on the server side.",
+      "link": "https://nuxtjs.org/guides/features/data-fetching#the-fetch-hook",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can use in your page components which is merged with your local data before the page is rendered.",
+      "link": "https://nuxtjs.org/guides/features/data-fetching#async-data",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can ignore a file by prefixing it with a `-`",
+      "link": "https://nuxtjs.org/guides/features/configuration#the-ignoreprefix-property",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can modify the host and port of your application directly in the command line `HOST=0 PORT=8000 npm run dev`. (0 will give your local IP address)",
+      "link": "https://nuxtjs.org/guides/features/configuration#edit-host-and-port",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can style the using the class `.nuxt-link-exact-active`",
+      "link": "https://nuxtjs.org/guides/features/nuxt-components#linkexactactiveclass",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can use the `<client-only>` component to purposely render a component only on the client side.",
+      "link": "https://nuxtjs.org/guides/features/nuxt-components#the-client-only-component",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can add transitions</a> to your pages by adding `transition: 'fade'` and adding the class name `.home-enter-active{...}`",
+      "link": "https://nuxtjs.org/guides/features/transitions",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can use require when working with dynamic images `<img :src=\"require(`~/assets/img/${image}.jpg`)\" />`",
+      "link": "https://nuxtjs.org/guides/directory-structure/assets#images",
+      "version": "v2.x"
+    }
+  },
+  {
+    "message": {
+      "text": "You can run `npx nuxt build -a` to analyze your production bundle!",
+      "link": "https://nuxtjs.org/guides/configuration-glossary/configuration-build#analyze",
+      "version": "v2.x"
+    }
   }
 ]
