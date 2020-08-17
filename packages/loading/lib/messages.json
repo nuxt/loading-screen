@@ -85,7 +85,7 @@
   },
   {
     "message": {
-      "text": "You can use in your page components which is merged with your local data before the page is rendered.",
+      "text": "You can use `asyncData`in your page components which is merged with your local data before the page is rendered.",
       "link": "https://nuxtjs.org/guides/features/data-fetching#async-data",
       "version": "v2.x"
     }
@@ -106,28 +106,28 @@
   },
   {
     "message": {
-      "text": "You can style the using the class `.nuxt-link-exact-active`",
+      "text": "You can style the `linkExactActiveClass` using the class `.nuxt-link-exact-active`",
       "link": "https://nuxtjs.org/guides/features/nuxt-components#linkexactactiveclass",
       "version": "v2.x"
     }
   },
   {
     "message": {
-      "text": "You can use the `<client-only>` component to purposely render a component only on the client side.",
+      "text": "You can use the `client-only` component to purposely render a component only on the client side.",
       "link": "https://nuxtjs.org/guides/features/nuxt-components#the-client-only-component",
       "version": "v2.x"
     }
   },
   {
     "message": {
-      "text": "You can add transitions</a> to your pages by adding `transition: 'fade'` and adding the class name `.home-enter-active{...}`",
+      "text": "You can add transitions to your pages by adding `transition: 'fade'` and adding the class name `.home-enter-active{...}`",
       "link": "https://nuxtjs.org/guides/features/transitions",
       "version": "v2.x"
     }
   },
   {
     "message": {
-      "text": "You can use require when working with dynamic images `<img :src=\"require(`~/assets/img/${image}.jpg`)\" />`",
+      "text": "You can use require when working with dynamic images `:src=\"require(`~/assets/img/${image}.jpg`)\"`",
       "link": "https://nuxtjs.org/guides/directory-structure/assets#images",
       "version": "v2.x"
     }
