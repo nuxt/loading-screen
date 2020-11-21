@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.2...@nuxt/loading-screen@2.0.3) (2020-11-21)
+
+
+### Bug Fixes
+
+* mixed esm syntax in utils ([41a6eda](https://github.com/nuxt/loading-screen/commit/41a6edabec305b745d79a3d94fc46ad3a4c1ead1))
+
+
+
+
+
 ## [2.0.2](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.1...@nuxt/loading-screen@2.0.2) (2020-06-25)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@nuxt/loading-screen",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "repository": "nuxt/loading-screen",
   "license": "MIT",
   "main": "lib/module.js",
