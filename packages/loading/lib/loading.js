@@ -5,7 +5,7 @@ const serveStatic = require('serve-static')
 const getPort = require('get-port-please')
 const { json, end, header } = require('node-res')
 
-const { parseStack } = require('./utils/error')
+const { parseStack } = require('./utils')
 const SSE = require('./sse')
 
 class LoadingUI {

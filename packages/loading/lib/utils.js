@@ -1,7 +1,7 @@
-import { sep } from 'path'
+const { sep } = require('path')
 
 // copied from https://github.com/nuxt/consola/blob/master/src/utils/error.js
-export function parseStack (stack) {
+function parseStack (stack) {
   const cwd = process.cwd() + sep
 
   const lines = stack
@@ -14,4 +14,8 @@ export function parseStack (stack) {
     )
 
   return lines
+}
+
+module.exports = {
+  parseStack
 }
