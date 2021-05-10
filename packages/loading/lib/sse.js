@@ -13,7 +13,10 @@ class SSE {
     status(res, 200)
     header(res, 'Content-Type', 'text/event-stream')
     header(res, 'Cache-Control', 'no-cache')
-    header(res, 'Connection', 'keep-alive')
+
+    if (req.httpVersion !== '2.0') {
+      header(res, 'Connection', 'keep-alive')
+    }
 
     this.subscriptions.add(res)
     res.on('close', () => this.subscriptions.delete(res))
