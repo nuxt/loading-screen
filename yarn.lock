@@ -5270,10 +5270,10 @@ fs-extra@^9.0.0:
     jsonfile "^6.0.1"
     universalify "^1.0.0"
 
-fs-memo@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/fs-memo/-/fs-memo-1.0.1.tgz#929fb840efce164003e8722aa9b56dec7c630438"
-  integrity sha512-lV4dUPsyJHVgD3g0loRj+ClZQnb8eUQN0olNWgmYbq+ch4ponSMBI+l4l72l9krHakhq79QLCzPJMko+qpvmTQ==
+fs-memo@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fs-memo/-/fs-memo-1.2.0.tgz#a2ec3be606b902077adbb37ec529c5ec5fb2e037"
+  integrity sha512-YEexkCpL4j03jn5SxaMHqcO6IuWuqm8JFUYhyCep7Ao89JIYmB8xoKhK7zXXJ9cCaNXpyNH5L3QtAmoxjoHW2w==
 
 fs-minipass@^1.2.5:
   version "1.2.7"
@@ -5367,12 +5367,12 @@ get-pkg-repo@^1.0.0:
     parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
 
-get-port-please@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/get-port-please/-/get-port-please-1.0.0.tgz#40c34b3b8fede217e7ca8f6a4a28aea49276b258"
-  integrity sha512-4hylsMS0Uqa4jjwXVS+QWMntWL7CQouAlv4BEmiycavPqOp3ytGf4V4yqy8FnbBboHq5orCXuZyftuXbANk+Mg==
+get-port-please@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/get-port-please/-/get-port-please-2.2.0.tgz#3fabbbe2f9d8e6b7c47e1cddd71fc4c593f1deac"
+  integrity sha512-1c7Np/cpA7XCB6IrPAdaBaJjlGHTqg4P82h/ZqyBL6dCdwRzZBOFGZO7FL2KaZ2uNvD6v8QilA7LZwMpmIggDQ==
   dependencies:
-    fs-memo "^1.0.0"
+    fs-memo "^1.2.0"
 
 get-port@^4.2.0:
   version "4.2.0"
