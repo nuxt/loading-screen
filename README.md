@@ -1,4 +1,4 @@
-## Nuxt Screens Module
+## Loading Screen
 
 [![Github Actions CI][github-actions-src]][github-actions-href]
 [![Standard JS][standard-js-src]][standard-js-href]
@@ -7,26 +7,14 @@
 [![package phobia][package-phobia-src]][package-phobia-href]
 [![bundle phobia][bundle-phobia-src]][bundle-phobia-href]
 
-### Loading Screen
 
 This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.js) to show loading screen.
 
 ![nuxt-loading-screen](https://user-images.githubusercontent.com/904724/54605661-12812680-4a4a-11e9-92e0-e7d7ed3a7c66.gif)
 
-## Contribution
-
-- Clone this repository
-- `yarn install`
-- `yarn build`
-- `cd packages/loading`
-- `yarn link`
-- Clone [nuxt.js](https://github.com/nuxt/nuxt.js) repository
-- `yarn link @nuxt/loading-screen`
-- `yarn nuxt examples/hello-world -o`
-
 ## License
 
-MIT - Made with 💖 By Nuxt.js team!
+MIT - Made with 💖 By Nuxt team!
 
 <!-- Refs -->
 [github-actions-src]: https://github.com/nuxt/loading-screen/workflows/ci/badge.svg?branch=master
