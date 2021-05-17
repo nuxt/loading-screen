@@ -64,10 +64,6 @@
   </div>
 </template>
 
-<style src="./css/reset.css"></style>
-<style src="./css/loading.css"></style>
-<style src="./css/fonts.css"></style>
-
 <script>
 import fetch from 'unfetch'
 import capitalizeMixin from './mixins/capitalize'
@@ -263,3 +259,7 @@ export default {
   }
 }
 </script>
+
+<style src="./css/reset.css"></style>
+<style src="./css/loading.css"></style>
+<style src="./css/fonts.css"></style>

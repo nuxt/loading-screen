@@ -1,32 +1,30 @@
 {
-  "name": "@nuxt/screen",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nuxt/screens.git"
-  },
+  "name": "@nuxt/loading-screen",
+  "version": "2.0.3",
+  "repository": "nuxt/loading-screen",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
+  "main": "lib/module.js",
+  "files": [
+    "lib",
+    "app-dist"
   ],
   "scripts": {
-    "build": "yarn workspaces run poi --prod",
-    "bump": "yarn lerna version --yes --no-push",
-    "lint": "eslint .",
-    "prepublish": "yarn build && yarn lint",
-    "release": "yarn bump && git push --follow-tags && cd packages/loading && npm publish"
+    "build": "yarn poi --prod",
+    "lint": "eslint --ext .vue,.ts,.js .",
+    "test": "yarn lint",
+    "prepack": "yarn build",
+    "release": "yarn test && standard-version && git push --follow-tags && npm publish"
+  },
+  "dependencies": {
+    "connect": "^3.7.0",
+    "defu": "^5.0.0",
+    "get-port-please": "^2.2.0",
+    "node-res": "^5.0.1",
+    "serve-static": "^1.14.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "latest",
     "eslint": "latest",
-    "eslint-config-standard": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jest": "latest",
-    "eslint-plugin-node": "latest",
-    "eslint-plugin-promise": "latest",
-    "eslint-plugin-standard": "latest",
-    "eslint-plugin-vue": "latest",
-    "lerna": "latest",
     "poi": "latest",
     "standard-version": "latest",
     "unfetch": "latest",
