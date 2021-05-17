@@ -1,7 +1,13 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.0.4](https://github.com/nuxt/loading-screen/compare/v2.0.3...v2.0.4) (2021-05-17)
+
+
+### Bug Fixes
+
+* don't set `connection` header if on http/2 ([#79](https://github.com/nuxt/loading-screen/issues/79)) ([cce7f58](https://github.com/nuxt/loading-screen/commit/cce7f5839c91f63aa949ac08c74972932f0f2a3d))
 
 ## [2.0.3](https://github.com/nuxt/loading-screen/compare/@nuxt/loading-screen@2.0.2...@nuxt/loading-screen@2.0.3) (2020-11-21)
 
