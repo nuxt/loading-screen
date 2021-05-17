@@ -5,7 +5,6 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![package phobia][package-phobia-src]][package-phobia-href]
-[![bundle phobia][bundle-phobia-src]][bundle-phobia-href]
 
 
 This module is internally being used by [nuxt.js](https://github.com/nuxt/nuxt.js) to show loading screen.
@@ -31,6 +30,3 @@ MIT - Made with 💖 By Nuxt team!
 
 [package-phobia-src]: https://flat.badgen.net/packagephobia/install/@nuxt/loading-screen
 [package-phobia-href]: https://packagephobia.now.sh/result?p=@nuxt/loading-screen
-
-[bundle-phobia-src]: https://flat.badgen.net/bundlephobia/minzip/@nuxt/loading-screen
-[bundle-phobia-href]: https://bundlephobia.com/result?p=@nuxt/loading-screen
