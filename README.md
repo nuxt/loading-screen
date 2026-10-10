@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repository is archived. `@nuxt/loading-screen` was designed for Nuxt 2, which reached end of life on June 30, 2024. Nuxt 3+ includes its own loading screen in development.
+
 ## Loading Screen
 
 [![Github Actions CI][github-actions-src]][github-actions-href]
